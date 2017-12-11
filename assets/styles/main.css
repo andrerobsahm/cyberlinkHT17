@@ -9,12 +9,12 @@
 h1, nav { font-family: 'Audiowide', cursive;
 }
 
-p, h2, h3, h4, small {
+p, h2, h3, h4, h5, h6, small {
     font-family: 'Lekton', sans-serif;
 }
 
 .container {}
 
 footer {
-    color: white;
+    color: #fff;
 }

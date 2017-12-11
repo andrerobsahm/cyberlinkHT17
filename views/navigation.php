@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
 
-    <a class="navbar-brand" href="#">
-        <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="Cyberlink">CYBERLINK<!--<?php echo $config['title']; ?>-->
+    <a class="navbar-brand" href="/index.php">
+        <img src="" width="30" height="30" class="d-inline-block align-top" alt="C"><?php echo $config['title']; ?>
     </a>
 
     <ul class="navbar-nav">
@@ -10,8 +10,13 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="/login.php">Login</a>
+            <a class="nav-link" href="/pages/register.php">Register</a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="/pages/login.php">Login</a>
+        </li>
+
     </ul><!-- /navbar-nav -->
 </nav><!-- /navbar -->
 
