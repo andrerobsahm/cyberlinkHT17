@@ -1,19 +1,15 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
 
     <a class="navbar-brand" href="#">
-        <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">CYBERLINK<!--<?php echo $config['title']; ?>-->
+        <img src="/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="Cyberlink">CYBERLINK<!--<?php echo $config['title']; ?>-->
     </a>
 
-    <ul class="navbar-nav ">
+    <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="/index.php">Home</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="/about.php">About</a>
-        </li>
-
-        <li class="nav-item ">
             <a class="nav-link" href="/login.php">Login</a>
         </li>
     </ul><!-- /navbar-nav -->

@@ -1,10 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Lekton');
 
+/*:root {
+    --main-color: red;
+    --link-color: #343A40;
+    --base-margin:16px;
+}*/
 
-h1, nav {
-    font-family: 'Audiowide', cursive;
+h1, nav { font-family: 'Audiowide', cursive;
 }
 
-p, h2, h3 {
+p, h2, h3, h4, small {
     font-family: 'Lekton', sans-serif;
+}
+
+.container {}
+
+footer {
+    color: white;
 }
