@@ -30,11 +30,11 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
     $registerUser->bindParam(':username', $username, PDO::PARAM_STR);
     $registerUser->bindParam(':name', $name, PDO::PARAM_STR);
     $registerUser->bindParam(':email', $email, PDO::PARAM_STR);
-    $registerUser->bindParam(':password', $password, PDO::PARAM_STR);
+    $registerUser->bindParam(':password', $hashed_password, PDO::PARAM_STR);
 
     $registerUser->execute();
 
-    redirect('/pages/login.php');
+    redirect('../../pages/login.php');
 
         // if ($registerUser($username, $name, $email, $password)) {
         //     redirect('/pages/login.php');
