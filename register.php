@@ -1,9 +1,9 @@
-<?php require __DIR__.'/../views/header.php'; ?>
+<?php require __DIR__.'/views/header.php'; ?>
 
 <article>
     <h1>Register</h1>
 
-    <form action="/../app/auth/register.php" method="post">
+    <form action="/app/auth/register.php" method="post">
         <div class="form-group">
             <label for="name">Full Name</label>
             <input class="form-control" type="text" name="name" placeholder="your name" required>
@@ -11,7 +11,7 @@
         </div><!-- /form-group -->
 
         <div class="form-group">
-            <label for="name">Username</label>
+            <label for="username">Username</label>
             <input class="form-control" type="text" name="username" placeholder="your username" required>
             <small class="form-text text-muted">Enter your username</small>
         </div><!-- /form-group -->
@@ -35,8 +35,8 @@
 <hr class="mt-5 mb-5">
 <article>
     <h3>Already a Cyberlinker!?</h3>
-    <h5>Log in <a href="/pages/login.php">here</a>.</h5>
+    <h5>Log in <a href="/login.php">here</a>.</h5>
 </article>
 
 
-<?php require __DIR__.'/../views/footer.php'; ?>
+<?php require __DIR__.'/views/footer.php'; ?>

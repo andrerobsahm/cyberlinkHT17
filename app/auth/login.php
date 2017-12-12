@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require __DIR__.'../app/autoload.php';
+require __DIR__.'/../autoload.php';
 // In this file we login users.
 // 1. Check if the email and password exists in the request.
 // 2. Fetch and sanitize the email address value and store it in an variable called $email.
@@ -11,19 +11,28 @@ require __DIR__.'../app/autoload.php';
 // 7. Redirect the user back to the start page.
 
 
-if (isset($_POST['email'], $_POST['password'])) {
+if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STR);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+
+    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->execute();
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     // if (!$statement) {
     //     die(var_dump($pdo->errorInfo()));
     // }
-}
 
 
-if (login($email, $password, $pdo)) {
-    redirect(__DIR__.'/pages/index.php');
+    if (!$user) {
+        redirect('../../login.php');
+    }
+    if (password_verify($_POST['password'], $user['password'])){
+        unset($user['password']);
+        $_SESSION['user'] = $user;
+    }
 }
-else {
-    redirect(__DIR__.'/pages/login.php');
-}
+redirect('/profile.php');

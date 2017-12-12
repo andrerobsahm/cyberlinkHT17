@@ -8,18 +8,18 @@ require __DIR__.'/views/header.php';
     <p>This is the home page.</p>
 </article>
     <hr>
-<article class="">
+<article>
     <h2>Do you have an account?</h2>
-    <h4>Otherwise, become a cyberlinker <a href="/login.php">here</a>.</h4>
+    <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
 </article>
     <hr>
 
 <!-- The feed -->
 <section class="border">
-    - title
-    - description
-    - url
-    - id
+
+<?php if(isset($_SESSION['user'])) {
+    var_dump($_SESSION['user']);
+} ?>
 </section><!-- /the feed -->
 
 

@@ -10,12 +10,26 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="/pages/register.php">Register</a>
+            <?php if (!isset($_SESSION['user'])): ?>
+            <a class="nav-link" href="/register.php">Register</a>
+            <?php endif; ?>
+
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="/pages/login.php">Login</a>
+            <?php if (isset($_SESSION['user'])): ?>
+                <a class="nav-link" href="/app/auth/logout.php">Logout</a>
+
+            <?php else: ?>
+            <a class="nav-link" href="/login.php">Login</a>
         </li>
+    <?php endif; ?>
+
+    <li class="nav-item">
+        <?php if (isset($_SESSION['user'])): ?>
+            <a class="nav-link" href="/profile.php">Profile</a>
+    </li>
+    <?php endif; ?>
 
     </ul><!-- /navbar-nav -->
 </nav><!-- /navbar -->
