@@ -3,11 +3,17 @@
 <article>
     <h1>Register</h1>
 
-    <form action="app/auth/login.php" method="post">
+    <form action="/../app/auth/register.php" method="post">
         <div class="form-group">
             <label for="name">Full Name</label>
             <input class="form-control" type="text" name="name" placeholder="your name" required>
             <small class="form-text text-muted">Enter your name</small>
+        </div><!-- /form-group -->
+
+        <div class="form-group">
+            <label for="name">Username</label>
+            <input class="form-control" type="text" name="username" placeholder="your username" required>
+            <small class="form-text text-muted">Enter your username</small>
         </div><!-- /form-group -->
 
         <div class="form-group">

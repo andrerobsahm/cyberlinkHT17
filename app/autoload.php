@@ -17,4 +17,4 @@ mb_internal_encoding('UTF-8');
 $config = require __DIR__.'/config.php';
 
 // Setup the database connection.
-// $pdo = new PDO($config['database_path']);
+$pdo = new PDO($config['database_path']);

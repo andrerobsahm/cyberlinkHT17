@@ -16,7 +16,6 @@ require __DIR__.'/../app/autoload.php';
 
     <link rel="stylesheet" href="/assets/styles/main.css">
 
-
 </head>
 <body>
     <?php require __DIR__.'/navigation.php'; ?>

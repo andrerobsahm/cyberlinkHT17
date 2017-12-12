@@ -1,6 +1,6 @@
 <?php
 declare(strict_types=1);
-require __DIR__.'/app/autoload.php';
+require __DIR__.'../app/autoload.php';
 // In this file we login users.
 // 1. Check if the email and password exists in the request.
 // 2. Fetch and sanitize the email address value and store it in an variable called $email.
@@ -11,18 +11,19 @@ require __DIR__.'/app/autoload.php';
 // 7. Redirect the user back to the start page.
 
 
-// if (isset($_POST['email'], $_POST['password'])) {
-//     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-//     $password = filter_var($_POST['password'], FILTER_SANITIZE_STR);
-//     //
-//     // if (!$statement) {
-//     //     die(var_dump($pdo->errorInfo()));
-//     // }
-// }
-//
-// if (login($email, $password, $pdo)) {
-//     header('Location:/index.php');
-// }
-// else {
-//     header('Location:/login.php');
-// }
+if (isset($_POST['email'], $_POST['password'])) {
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = filter_var($_POST['password'], FILTER_SANITIZE_STR);
+
+    // if (!$statement) {
+    //     die(var_dump($pdo->errorInfo()));
+    // }
+}
+
+
+if (login($email, $password, $pdo)) {
+    redirect(__DIR__.'/pages/index.php');
+}
+else {
+    redirect(__DIR__.'/pages/login.php');
+}
