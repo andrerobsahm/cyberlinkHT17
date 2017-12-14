@@ -10,29 +10,30 @@
         </li>
 
         <li class="nav-item">
+            <?php if (isset($_SESSION['user'])): ?>
+                <a class="nav-link" href="/profile.php">Profile</a>
+        </li>
+        <?php endif; ?>
+
+        <li class="nav-item">
             <?php if (!isset($_SESSION['user'])): ?>
             <a class="nav-link" href="/register.php">Register</a>
             <?php endif; ?>
-
         </li>
 
         <li class="nav-item">
             <?php if (isset($_SESSION['user'])): ?>
                 <a class="nav-link" href="/app/auth/logout.php">Logout</a>
-
             <?php else: ?>
-            <a class="nav-link" href="/login.php">Login</a>
-        </li>
-    <?php endif; ?>
-
-    <li class="nav-item">
-        <?php if (isset($_SESSION['user'])): ?>
-            <a class="nav-link" href="/profile.php">Profile</a>
-    </li>
-    <?php endif; ?>
+                <a class="nav-link" href="/login.php">Login</a>
+            </li>
+        <?php endif; ?>
 
     </ul><!-- /navbar-nav -->
+    <?php if (isset($_SESSION['user'])): ?>
+        <span class="navbar-text" style="color:#e3f2fd">
+            Logged in as: <?php echo $_SESSION['user']['username']; ?>.
+        </span>
+    <?php endif; ?>
+
 </nav><!-- /navbar -->
-
-
-<!-- Update the Login link in the navigation to show Logout if the session variable user exists. When the user clicks on the logout link they should be taken to app/auth/logout.php. -->

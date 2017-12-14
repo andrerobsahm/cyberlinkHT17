@@ -1,37 +1,39 @@
 <?php
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
-// In this file we login users.
-// 1. Check if the email and password exists in the request.
-// 2. Fetch and sanitize the email address value and store it in an variable called $email.
-// 3. Fetch the user in the database by the given email address.
-// 4. If the user wasn't found in the database, redirect the user back to the login page.
-// 5. If the user was found in the database, verify the password from the request against the one in the database.
-// 6. If the password was valid, store the user's id, name and email in a session variable called user.
-// 7. Redirect the user back to the start page.
 
-
+// Check if both username, email and password exists in the POST request.
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
-    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+    // $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
+    // $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
+    // Prepare, bind email parameter and execute the database query.
     $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
 
+    // Fetch the user as an associative array.
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
     // if (!$statement) {
     //     die(var_dump($pdo->errorInfo()));
     // }
 
-
+    // If we couldn't find the user in the database, redirect back to the login
+    // page with our custom redirect function.
     if (!$user) {
         redirect('../../login.php');
     }
+
+    // If we found the user in the database, compare the given password from the
+    // request with the one in the database using the password_verify function.
     if (password_verify($_POST['password'], $user['password'])){
+        // If the password was valid we know that the user exists and provided
+        // the correct password. We can now save the user in our session.
+        // Remember to not save the password in the session!
         unset($user['password']);
+
         $_SESSION['user'] = $user;
     }
 }
