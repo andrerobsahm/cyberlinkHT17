@@ -1,48 +1,61 @@
 <?php
 declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
 
-// In this file we update profile in the database.
-
-// $statement = $pdo->query('SELECT * FROM users WHERE id = :id');
-// $currentUser = $statement->fetch(PDO::FETCH_ASSOC);
-
-
-// UPDATE BIO TEXT
+// UPDATE PROFILE BIO TEXT
 if (isset($_POST['bio'])) {
     $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
+
+    $updateUserBio = $pdo->prepare('UPDATE users SET bio=:bio WHERE id=:id');
+
+    $id = $_SESSION['user']['id'];
+    $updateUserBio->bindParam(':id', $id, PDO::PARAM_INT);
+    $updateUserBio->bindParam(':bio', $bio, PDO::PARAM_STR);
+    $updateUserBio->execute();
+
+        if (!$updateUserBio) {
+            die(var_dump($pdo->errorInfo()));
+        }
 }
-else {
-    $bio = "";
-}
-
-$query = 'INSERT INTO users(bio, profile_pic) VALUES (:bio, :profile_pic)';
-$updateUser = $pdo->prepare($query);
-
-$updateUser->bindParam(':bio', $bio, PDO::PARAM_STR);
-$updateUser->bindParam(':profile_pic', $profile_pic, PDO::PARAM_STR);
-
-$updateUser->execute();
-
 
 // UPDATE PROFILE PIC
 if (isset($_FILES['profile_pic'])) {
-  $profile_pic = $_FILES['profile_pic'];
-  $info = pathinfo($_FILES['profile_pic']['name']); //Skapar array ur 'name'
-  $ext = $info['extension']; //Väljer 'extension' ur 'name'
-  $fileName = $_SESSION['user']['username'].'.'.$ext;
+    $profile_pic = $_FILES['profile_pic'];
+    $info = pathinfo($_FILES['profile_pic']['name']); //Skapar array ur 'name'
+    $ext = $info['extension']; //Väljer 'extension' ur 'name'
+    $fileName = $_SESSION['user']['username'].'.'.$ext;
 
-  move_uploaded_file($profile_pic['tmp_name'], __DIR__.'/profile_pic/'.$fileName);
+    move_uploaded_file($profile_pic['tmp_name'], __DIR__.'/profile_pic/'.$fileName);
+
+    $id = $_SESSION['user']['id'];
+    $updateUserPic = $pdo->prepare('UPDATE users SET profile_pic=:profile_pic WHERE id=:id');
+
+    $updateUserPic->bindParam(':id', $id, PDO::PARAM_INT);
+    $updateUserPic->bindParam(':profile_pic', $fileName, PDO::PARAM_STR);
+    $updateUserPic->execute();
+
+    if (!$updateUserPic) {
+      die(var_dump($pdo->errorInfo()));
+    }
 }
 
-$updateUser = $pdo->prepare("UPDATE users SET profile_pic = :profile_pic WHERE id = :id");
-$updateUser->bindParam(':profile_pic', $fileName, PDO::PARAM_STR);
-$updateUser->execute();
+// UPDATE PASSWORD
 
+//Lägg till att en måste skriva sitt gamla lösenord för att kuna ändra. Lösenordet ska också vara dolt när en skriver. 
+if (isset($_POST['password'])) {
+    $password = filter_var($_POST['password']);
+    $id = $_SESSION['user']['id'];
 
-if (!$updateUser) {
-    die(var_dump($pdo->errorInfo()));
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+    $updatePassword = $pdo->prepare('UPDATE users SET password=:password WHERE id=:id');
+
+    $updatePassword->bindParam(':id', $id, PDO::PARAM_INT);
+    $updatePassword->bindParam(':password', $hashed_password, PDO::PARAM_STR);
+    $updatePassword->execute();
+
+        if (!$updatePassword) {
+            die(var_dump($pdo->errorInfo()));
+        }
 }
 
 redirect('/profile.php');

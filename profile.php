@@ -1,12 +1,16 @@
-<?php require __DIR__.'/views/header.php'; ?>
-<?php
+<?php require __DIR__.'/views/header.php';
 
-$getUserInfo = $pdo->prepare('SELECT * FROM users WHERE id = :id');
-$getUserInfo->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_STR);
-$getUserInfo->execute();
+// $getUserInfo = $pdo->prepare('SELECT * FROM users WHERE id = :id');
+// $getUserInfo->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_STR);
+// $getUserInfo->execute();
 
 // Fetch the user as an associative array.
-$user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
+// $user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
+
+
+// Get user info
+$user = userInfo($pdo);
+
 ?>
 
 
@@ -22,25 +26,21 @@ $user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
 
 <hr class="mt-5 mb-5">
 
-<!-- SHOW PROFILE PIC -->
-<div>
+<section class="d-flex justify-content-between">
+    <article><!-- BIO TEXT -->
+        <h4>Bio:</h4>
+        <p><?php echo $user['bio']; ?></p>
+    </article>
 
-<img class="img-thumbnail rounded" src="
-        <?php if(file_exists(__DIR__. '/app/auth/profile_pic/'.$user['profile_pic'])):
-        echo $user['profile_pic'];
-        else: echo "/images/default_pic.png"; ?>
-    <?php endif; ?>
-" alt="no profile picture...">
+    <article><!-- PROFILE PIC -->
+        <?php if (!$user['profile_pic']): ?>
+        <img src="/images/default_pic.png";
+        <?php else: ?>
+        <img class="img-thumbnail" src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>">
+        <?php endif; ?>
+    </article>
 
-</div>
-
-
-<!-- SHOW BIO TEXT -->
-<hr class="mt-5 mb-5">
-<article>
-    <h4>Bio:</h4>
-    <p><?php echo $user['bio']; ?></p>
-</article>
+</section>
 
 <hr class="mt-5 mb-5">
 
@@ -50,17 +50,26 @@ $user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
 
 <div class="collapse" id="collapseExample">
     <div class="card card-body">
-        <h5>Change bio text</h5>
-        <p><?php echo $user['bio'];?></p>
+        <form action="/app/auth/updateprofile.php" method="post" enctype="multipart/form-data">
+            <label for="input">Change profile picture</label>
+            <input type="file" name="profile_pic" accept=".jpg, .jpeg, .gif, .png">
+            <br>
+            <button type="submit" class="btn btn-sm btn-dark">Save picture</button>
+        </form>
 
-    <form action="/app/auth/updateprofile.php" method="post" enctype="multipart/form-data">
-        <h5>Change profile picture</h5>
-        <input type="file" name="profile_pic" accept=".jpg, .jpeg, .gif, .png">
-        <button type="submit" class="btn btn-sm btn-dark">Save</button>
-    </form>
+        <form action="/app/auth/updateprofile.php" method="post">
+            <label for="textarea">Change bio text</label>
+            <textarea class="form-control" id="updateProfileText" name="bio" rows="3"></textarea>
+            <button type="submit" class="btn btn-sm btn-dark">Save bio</button>
+        </form>
+
+        <form action="/app/auth/updateprofile.php" method="post">
+            <label for="input">Change password</label>
+            <input class="form-control" id="updatePassword" name="password"></input>
+            <button type="submit" class="btn btn-sm btn-dark">Save password</button>
+        </form>
     </div>
 </div>
-
 
 
 <?php require __DIR__.'/views/footer.php'; ?>

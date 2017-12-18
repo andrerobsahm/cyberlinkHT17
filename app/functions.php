@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 if (!function_exists('redirect')) {
     /**
      * Redirect the user to given path.
@@ -16,19 +17,26 @@ if (!function_exists('redirect')) {
 }
 
 
-//function to show database info on profile page
+// function to show database info on profile page
 function userInfo($pdo){
-    $user_id = (int)$_SESSION['user']['id'];
-    $query = "SELECT * FROM users WHERE id = :id";
-    $statement = $pdo->prepare($query);
+    $id = $_SESSION['user']['id'];
+    $statement = $pdo->prepare("SELECT * FROM users WHERE id=:id");
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->execute();
 
-    $resultQuery = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $resultQuery;
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+    unset($user['password']);
+        return $user;
 }
 
 
+// function to show posts
+function postInfo($pdo){
+    $id = $_SESSION['user']['id'];
+    $statement = $pdo->prepare("SELECT * FROM posts WHERE id=:id");
+    $statement->bindParam(':id', $id, PDO::PARAM_INT);
+    $statement->execute();
 
-//insert into database
-// $update = "UPDATE IN users WHERE id = :id";
+    $user = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $user;
+}
