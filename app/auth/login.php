@@ -20,7 +20,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     //     die(var_dump($pdo->errorInfo()));
     // }
 
-    // If we couldn't find the user in the database, redirect back to the login
+    // If we can't find the user in the database, redirect back to the login
     // page with our custom redirect function.
     if (!$user) {
         redirect('../../login.php');

@@ -1,15 +1,7 @@
 <?php require __DIR__.'/views/header.php';
 
-// $getUserInfo = $pdo->prepare('SELECT * FROM users WHERE id = :id');
-// $getUserInfo->bindParam(':id', $_SESSION['user']['id'], PDO::PARAM_STR);
-// $getUserInfo->execute();
-
-// Fetch the user as an associative array.
-// $user = $getUserInfo->fetch(PDO::FETCH_ASSOC);
-
-
 // Get user info
-$user = userInfo($pdo);
+$user = GetUser($pdo);
 
 ?>
 
@@ -18,11 +10,21 @@ $user = userInfo($pdo);
     <h1>My Profile</h1>
     <hr class="mt-5 mb-5">
 </article>
-<article>
-    <h3>Hi there, <?php echo $user['name'];?> (aka <?php echo $user['username']; ?>)!</h3>
-    <p>Here is you own page where you can edit you profile or, why you would want that - delete you account.</p>
-    <h5>Keep on <a href="/index.php">cyberlinking!</a></h5>
-</article>
+
+<section class="d-flex">
+    <article><!-- GREETING -->
+        <h3>Hi there, <?php echo $user['name'];?> (aka <?php echo $user['username']; ?>)!</h3>
+        <p>Here is you own page where you can edit you profile or, why you would want that - delete your account.</p>
+        <h5>Make a new <a href="/newpost.php">cyberlink</a>!</h5>
+    </article>
+    <article><!-- PROFILE PIC -->
+        <?php if (!$user['profile_pic']): ?>
+        <img src="/images/default_pic.png">
+        <?php else: ?>
+        <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail" style="width:20vw;">
+        <?php endif; ?>
+    </article>
+</section>
 
 <hr class="mt-5 mb-5">
 
@@ -31,24 +33,15 @@ $user = userInfo($pdo);
         <h4>Bio:</h4>
         <p><?php echo $user['bio']; ?></p>
     </article>
-
-    <article><!-- PROFILE PIC -->
-        <?php if (!$user['profile_pic']): ?>
-        <img src="/images/default_pic.png";
-        <?php else: ?>
-        <img class="img-thumbnail" src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>">
-        <?php endif; ?>
-    </article>
-
 </section>
 
 <hr class="mt-5 mb-5">
 
 
 <!-- TO UPDATE THE PROFILE -->
-<button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Update profile</button>
+<button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update profile</button>
 
-<div class="collapse" id="collapseExample">
+<div class="collapse" id="showForm">
     <div class="card card-body">
         <form action="/app/auth/updateprofile.php" method="post" enctype="multipart/form-data">
             <label for="input">Change profile picture</label>
