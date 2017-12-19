@@ -40,17 +40,21 @@ function GetPosts($pdo){
 
 
 // GET POST INFO FUNCTION
-function GetComments($pdo){
-    $statement = $pdo->prepare("SELECT * FROM comments");
-    $statement->execute();
+function GetCommentsOnPost($pdo){
+    // $statement_post = $pdo->query("SELECT * FROM posts WHERE post_id='post_id' ");
+    // $posts = $statement_post->fetch(PDO::FETCH_ASSOC);
+    // return $posts;
+
+    $statement = $pdo->query("SELECT username, comment, comment_date FROM users INNER JOIN comments ON users.id = comments.user_id WHERE post_id = post_id ORDER BY comment_id DESC");
+
     $comments = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $comments;
 }
 
 // GET ALL POST INFO
 function GetPostInfo($pdo) {
-$statement = $pdo->prepare("SELECT username, title, link, post_date FROM users INNER JOIN posts ON users.id = posts.user_id
-");
+$statement = $pdo->prepare("SELECT username, title, link, post_date, post_id FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY post_date ASC");
+
 $statement->execute();
 $postInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $postInfo;
@@ -58,6 +62,6 @@ $postInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
 
 
 //SORT POSTS BY DATE
-function sortPostsByDate($a, $b) {
-    return strtotime($a['post_date']) < strtotime($b['post_date']);
-}
+// function sortPostsByDate($a, $b) {
+//     return strtotime($a['post_date']) < strtotime($b['post_date']);
+// }

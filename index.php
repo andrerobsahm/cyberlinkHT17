@@ -11,20 +11,22 @@ if (isset($_SESSION['user'])) {
 $postInfo = GetPostInfo($pdo);
 
 // Get comments
-$comments = GetComments($pdo);
+// $comments = GetCommentsOnPost($pdo);
 
 // usort($postInfo, 'sortByDate');
 ?>
 
-<article>
+<header>
     <h1>Welcome to <?php echo $config['title']; ?></h1>
-</article>
-    <hr>
+</header>
 
-<article>
+<?php if (!isset($_SESSION['user'])): ?>
+    <article>
     <h2>Do you have an account?</h2>
     <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
-</article>
+    </article>
+<?php endif; ?>
+
     <hr>
 
 <!-- The feed -->
@@ -42,7 +44,7 @@ $comments = GetComments($pdo);
         <a href="<?php echo $value['link']; ?>">
             <?php echo $value['link']; ?>
         </a>
-
+        <br>
         <small>Posted by:
             <strong>
                 <?php echo $value['username']; ?>
@@ -51,7 +53,10 @@ $comments = GetComments($pdo);
             </strong>
         </small>
         <br>
-        <button class="btn btn-sm btn-dark mt-1"type="button" name="button">Comment</button>
+        <form action="/post.php" method="GET">
+            <a href="/post.php"><button class="btn btn-sm btn-dark mt-1" type="submit" name="id" value="<?php echo $value['post_id']; ?>">Comment</button></a>
+            <!-- <a href="/post.php" class="btn btn-sm btn-dark mt-1" role="button" aria-pressed="true">Comment</a> -->
+        </form>
     </article>
 <?php endforeach; ?>
 
