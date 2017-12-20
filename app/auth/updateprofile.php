@@ -6,7 +6,7 @@ require __DIR__.'/../autoload.php';
 if (isset($_POST['bio'])) {
     $bio = filter_var($_POST['bio'], FILTER_SANITIZE_STRING);
 
-    $updateUserBio = $pdo->prepare('UPDATE users SET bio=:bio WHERE id=:id');
+    $updateUserBio = $pdo->prepare("UPDATE users SET bio=:bio WHERE id=:id");
 
     $id = $_SESSION['user']['id'];
     $updateUserBio->bindParam(':id', $id, PDO::PARAM_INT);
@@ -28,7 +28,7 @@ if (isset($_FILES['profile_pic'])) {
     move_uploaded_file($profile_pic['tmp_name'], __DIR__.'/profile_pic/'.$fileName);
 
     $id = $_SESSION['user']['id'];
-    $updateUserPic = $pdo->prepare('UPDATE users SET profile_pic=:profile_pic WHERE id=:id');
+    $updateUserPic = $pdo->prepare("UPDATE users SET profile_pic=:profile_pic WHERE id=:id");
 
     $updateUserPic->bindParam(':id', $id, PDO::PARAM_INT);
     $updateUserPic->bindParam(':profile_pic', $fileName, PDO::PARAM_STR);
@@ -41,13 +41,13 @@ if (isset($_FILES['profile_pic'])) {
 
 // UPDATE PASSWORD
 
-//Lägg till att en måste skriva sitt gamla lösenord för att kuna ändra. Lösenordet ska också vara dolt när en skriver. 
+//Lägg till att en måste skriva sitt gamla lösenord för att kuna ändra. Lösenordet ska också vara dolt när en skriver.
 if (isset($_POST['password'])) {
     $password = filter_var($_POST['password']);
     $id = $_SESSION['user']['id'];
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-    $updatePassword = $pdo->prepare('UPDATE users SET password=:password WHERE id=:id');
+    $updatePassword = $pdo->prepare("UPDATE users SET password=:password WHERE id=:id");
 
     $updatePassword->bindParam(':id', $id, PDO::PARAM_INT);
     $updatePassword->bindParam(':password', $hashed_password, PDO::PARAM_STR);

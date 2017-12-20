@@ -47,19 +47,19 @@ $user = GetUser($pdo);
             <label for="input">Change profile picture</label>
             <input type="file" name="profile_pic" accept=".jpg, .jpeg, .gif, .png">
             <br>
-            <button type="submit" class="btn btn-sm btn-dark">Save picture</button>
+            <button type="submit" class="btn btn-sm btn-dark mt-1">Save picture</button>
         </form>
 
         <form action="/app/auth/updateprofile.php" method="POST">
             <label for="textarea">Change bio text</label>
             <textarea class="form-control" id="updateProfileText" name="bio" rows="3"></textarea>
-            <button type="submit" class="btn btn-sm btn-dark">Save bio</button>
+            <button type="submit" class="btn btn-sm btn-dark mt-1">Save bio</button>
         </form>
 
         <form action="/app/auth/updateprofile.php" method="POST">
             <label for="input">Change password</label>
             <input class="form-control" id="updatePassword" name="password"></input>
-            <button type="submit" class="btn btn-sm btn-dark">Save password</button>
+            <button type="submit" class="btn btn-sm btn-dark mt-1">Save password</button>
         </form>
     </div>
 </div>

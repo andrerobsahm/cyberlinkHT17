@@ -36,9 +36,6 @@ $postInfo = GetPostInfo($pdo);
     <?php foreach ($postInfo as $post => $value): ?>
 
     <article class="border bg-light p-2 mb-3">
-
-        <img class="" src="<?php echo $value['profile_pic']; ?>" alt="">
-
         <h5><?php echo $value['title']; ?> </h5>
 
         <a href="<?php echo $value['link']; ?>">
@@ -53,10 +50,12 @@ $postInfo = GetPostInfo($pdo);
             </strong>
         </small>
         <br>
+    <?php if (isset($_SESSION['user'])): ?>
         <form action="/post.php" method="GET">
             <a href="/post.php"><button class="btn btn-sm btn-dark mt-1" type="submit" name="id" value="<?php echo $value['post_id']; ?>">Comment</button></a>
-            <!-- <a href="/post.php" class="btn btn-sm btn-dark mt-1" role="button" aria-pressed="true">Comment</a> -->
         </form>
+    <?php endif; ?>
+
     </article>
 <?php endforeach; ?>
 
