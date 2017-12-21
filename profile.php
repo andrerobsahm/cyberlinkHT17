@@ -17,11 +17,12 @@ $user = GetUser($pdo);
         <p>Here is you own page where you can edit you profile or, why you would want that - delete your account.</p>
         <h5>Make a new <a href="/newpost.php">cyberlink</a>!</h5>
     </article>
+
     <article><!-- PROFILE PIC -->
         <?php if (!$user['profile_pic']): ?>
         <img src="/images/default_pic.png">
         <?php else: ?>
-        <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail" style="width:20vw;">
+        <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail" style="width:30vw;">
         <?php endif; ?>
     </article>
 </section>
@@ -58,7 +59,7 @@ $user = GetUser($pdo);
 
         <form action="/app/auth/updateprofile.php" method="POST">
             <label for="input">Change password</label>
-            <input class="form-control" id="updatePassword" name="password"></input>
+            <input class="form-control" id="updatePassword" name="password" type="password"></input>
             <button type="submit" class="btn btn-sm btn-dark mt-1">Save password</button>
         </form>
     </div>

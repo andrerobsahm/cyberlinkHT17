@@ -3,25 +3,25 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// In this file we make new posts in the database.
+// In this file we add new comments in the database.
 
 // NEW POST
 if (isset($_POST['comment'])) {
     $add_comment = filter_var($_POST['comment'], FILTER_SANITIZE_STRING);
 
     $user_id = $_SESSION['user']['id'];
-    $post_id = $_GET['id'];
+    $post_id = $_POST['post_id'];
     $comment_date = date("F j, Y, g:i a");
 
-    $newPost = $pdo->prepare("INSERT INTO comments (user_id, post_id, comment, comment_date) VALUES (:user_id, :post_id, :comment, :comment_date)");
+    $newComment = $pdo->prepare("INSERT INTO comments (user_id, post_id, comment, comment_date) VALUES (:user_id, :post_id, :comment, :comment_date)");
 
-    $newPost->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $newPost->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-    $newPost->bindParam(':comment', $add_comment, PDO::PARAM_STR);
-    $newPost->bindParam(':comment_date', $comment_date, PDO::PARAM_STR);
-    $newPost->execute();
+    $newComment->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+    $newComment->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+    $newComment->bindParam(':comment', $add_comment, PDO::PARAM_STR);
+    $newComment->bindParam(':comment_date', $comment_date, PDO::PARAM_STR);
+    $newComment->execute();
 
-        if (!$newPost) {
+        if (!$newComment) {
             die(var_dump($pdo->errorInfo()));
         }
 }

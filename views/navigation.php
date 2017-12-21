@@ -7,7 +7,7 @@
 
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link" href="/index.php">Home</a>
+            <a class="nav-link" href="/index.php">Feed</a>
         </li>
 
         <li class="nav-item">
@@ -32,8 +32,8 @@
 
     </ul><!-- /navbar-nav -->
     <?php if (isset($_SESSION['user'])): ?>
-        <span class="navbar-text" style="color:#e3f2fd">
-            Logged in as: <?php echo $_SESSION['user']['username']; ?>.
+        <span class="navbar-text text-warning">
+            Logged in as: <?php echo $_SESSION['user']['username']; ?>
         </span>
     <?php endif; ?>
 

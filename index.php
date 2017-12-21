@@ -13,11 +13,11 @@ $postInfo = GetPostInfo($pdo);
 // Get comments
 // $comments = GetCommentsOnPost($pdo);
 
-// usort($postInfo, 'sortByDate');
 ?>
 
 <header>
     <h1>Welcome to <?php echo $config['title']; ?></h1>
+    <hr>
 </header>
 
 <?php if (!isset($_SESSION['user'])): ?>
@@ -27,32 +27,47 @@ $postInfo = GetPostInfo($pdo);
     </article>
 <?php endif; ?>
 
+<?php if (isset($_SESSION['user'])): ?>
+    <h5>Post a new <a href="/newpost.php">cyberlink</a>!</h5>
+<?php endif; ?>
     <hr>
 
 <!-- The feed -->
 <section>
-    <h5>Shared links</h5>
+    <h4>Shared links</h4>
 
-    <?php foreach ($postInfo as $post => $value): ?>
+    <?php foreach ($postInfo as $post): ?>
 
     <article class="border bg-light p-2 mb-3">
-        <h5><?php echo $value['title']; ?> </h5>
 
-        <a href="<?php echo $value['link']; ?>">
-            <?php echo $value['link']; ?>
+        <a href="<?php echo $post['link']; ?>" target="_blank">
+            <h5><?php echo $post['title']; ?> </h5>
         </a>
-        <br>
+
+        <?php if (isset($post['description'])): ?>
+            <p><?php echo $post['description']; ?></p>
+        <?php endif; ?>
+
         <small>Posted by:
             <strong>
-                <?php echo $value['username']; ?>
+                <?php echo $post['username']; ?>
+            </strong>
                 on
-                <?php echo $value['post_date']; ?>
+            <strong>
+                <?php echo $post['post_date']; ?>
             </strong>
         </small>
         <br>
+        <small>Comments:
+            <span class="badge badge-warning badge-pill">1</span>
+        </small>
+
+
     <?php if (isset($_SESSION['user'])): ?>
         <form action="/post.php" method="GET">
-            <a href="/post.php"><button class="btn btn-sm btn-dark mt-1" type="submit" name="id" value="<?php echo $value['post_id']; ?>">Comment</button></a>
+            <a href="/post.php">
+                <button class="btn btn-sm btn-dark mt-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
+            </a>
         </form>
     <?php endif; ?>
 

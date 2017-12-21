@@ -37,6 +37,7 @@ if (isset($_FILES['profile_pic'])) {
     if (!$updateUserPic) {
       die(var_dump($pdo->errorInfo()));
     }
+
 }
 
 // UPDATE PASSWORD
