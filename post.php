@@ -31,6 +31,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
             <?php echo $post['post_date']; ?>
         </strong>
     </small>
+    <br>
 
 
     <?php if(isset($_SESSION['user']) && $post['username'] === $user['username']): //ID istället? ?>
@@ -53,6 +54,9 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
            </form>
 
        </div>
+       <form action="/app/posts/deletepost.php" method="GET">
+           <button class="btn btn-sm btn-dark" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Delete post</button>
+       </form>
 
     <?php endif; ?>
 </article>
