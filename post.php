@@ -102,7 +102,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
         <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
         <label for="comment">Add a comment</label>
         <textarea class="form-control" name="comment" rows="2"></textarea>
-        <button type="submit" class="btn btn-sm btn-dark mt-1">Save</button>
+        <button type="submit" class="btn btn-sm btn-dark mt-1">Add</button>
     </form>
 </article>
 

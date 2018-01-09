@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark d-flex justify-content-between">
 
     <a class="navbar-brand" href="/index.php">
         <!-- <img src="" width="30" height="30" class="d-inline-block align-top" alt="C"> -->
@@ -31,7 +31,7 @@
         <?php endif; ?>
 
     </ul><!-- /navbar-nav -->
-    
+
     <?php if (isset($_SESSION['user'])): ?>
         <span class="navbar-text text-warning">
             Logged in as: <?php echo $_SESSION['user']['username']; ?>

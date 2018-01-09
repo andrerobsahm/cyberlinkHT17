@@ -5,11 +5,11 @@ $user = GetUser($pdo);
 
 ?>
 
-
 <article>
     <h1>My Profile</h1>
     <hr class="mt-5 mb-5">
 </article>
+
 
 <section class="d-flex">
     <article><!-- GREETING -->
@@ -22,14 +22,14 @@ $user = GetUser($pdo);
         <?php if (!$user['profile_pic']): ?>
         <img src="/images/default_pic.png">
         <?php else: ?>
-        <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail" style="width:30vw;">
+        <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail" style="max-height:30vw;">
         <?php endif; ?>
     </article>
 </section>
 
-<hr class="mt-5 mb-5">
+<hr class="my-5">
 
-<section class="d-flex justify-content-between">
+<section>
     <article><!-- BIO TEXT -->
         <h4>Bio:</h4>
         <p><?php echo $user['bio']; ?></p>
@@ -40,33 +40,35 @@ $user = GetUser($pdo);
 
 
 <!-- TO UPDATE THE PROFILE -->
-<button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update profile</button>
+<!-- <article class="d-flex"> -->
 
-<div class="collapse" id="showForm">
-    <div class="card card-body">
-        <form action="/app/auth/updateprofile.php" method="POST" enctype="multipart/form-data">
-            <label for="input">Change profile picture</label>
-            <input type="file" name="profile_pic" accept=".jpg, .jpeg, .gif, .png">
-            <br>
-            <button type="submit" class="btn btn-sm btn-dark mt-1">Save picture</button>
-        </form>
+    <button class="btn btn-sm btn-dark mb-1" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update profile</button>
 
-        <form action="/app/auth/updateprofile.php" method="POST">
-            <label for="textarea">Change bio text</label>
-            <textarea class="form-control" id="updateProfileText" name="bio" rows="3"></textarea>
-            <button type="submit" class="btn btn-sm btn-dark mt-1">Save bio</button>
-        </form>
+    <div class="collapse" id="showForm">
+        <div class="card card-body" style="width:30rem;">
+            <form action="/app/auth/updateprofile.php" method="POST" enctype="multipart/form-data">
+                <label for="input">Change profile picture</label>
+                <input type="file" name="profile_pic" accept=".jpg, .jpeg, .gif, .png">
+                <br>
+                <button type="submit" class="btn btn-sm btn-warning mt-1">Save picture</button>
+            </form>
 
-        <form action="/app/auth/updateprofile.php" method="POST">
-            <label for="input">Change password</label>
-            <input class="form-control" id="updatePassword" name="password" type="password"></input>
-            <button type="submit" class="btn btn-sm btn-dark mt-1">Save password</button>
-        </form>
+            <form action="/app/auth/updateprofile.php" method="POST">
+                <label for="textarea">Change bio text</label>
+                <textarea class="form-control" id="updateProfileText" name="bio" rows="3"></textarea>
+                <button type="submit" class="btn btn-sm btn-warning mt-1">Save bio</button>
+            </form>
+
+            <form action="/app/auth/updateprofile.php" method="POST">
+                <label for="input">Change password</label>
+                <input class="form-control" id="updatePassword" name="password" type="password"></input>
+                <button type="submit" class="btn btn-sm btn-warning mt-1">Save password</button>
+            </form>
+        </div>
     </div>
-</div>
-<form action="/app/auth/deleteuser.php" method="GET">
-    <button class="btn btn-sm btn-dark" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
-</form>
-
+    <form action="/app/auth/deleteuser.php" method="GET">
+        <button class="btn btn-sm btn-dark deletingUser" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
+    </form>
+<!-- </article> -->
 
 <?php require __DIR__.'/views/footer.php'; ?>
