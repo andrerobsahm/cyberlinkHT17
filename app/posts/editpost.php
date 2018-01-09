@@ -9,9 +9,7 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $post_title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
     $post_link = filter_var($_POST['link'], FILTER_SANITIZE_URL);
     $post_description = filter_var($_POST['description'], FILTER_SANITIZE_STRING);
-
-    $post_id = $_POST['post_id'];
-    // $post_date = date("F j, Y, g:i a");
+    $post_id = filter_var($_POST['post_id'], FILTER_SANITIZE_NUMBER_INT);
 
     $editPost = $pdo->prepare("UPDATE posts SET title = :title, link = :link, description = :description WHERE post_id = :post_id");
 

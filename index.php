@@ -34,7 +34,7 @@ $postInfo = GetPostInfo($pdo);
 
 <!-- The feed -->
 <section>
-    <h4>Shared links</h4>
+    <h2>Shared cyberlinks</h2>
 
     <?php foreach ($postInfo as $post): ?>
 
@@ -58,18 +58,23 @@ $postInfo = GetPostInfo($pdo);
             </strong>
         </small>
         <br>
-        <small>Comments:
+
+    <div class="d-flex mt-2">
+
+        <?php if (isset($_SESSION['user'])): ?>
+            <form action="/post.php" method="GET">
+                <a href="/post.php">
+                    <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
+                </a>
+            </form>
+        <?php endif; ?>
+
+        <small>
+            Comments:
             <span class="badge badge-warning badge-pill">1</span>
         </small>
 
-
-    <?php if (isset($_SESSION['user'])): ?>
-        <form action="/post.php" method="GET">
-            <a href="/post.php">
-                <button class="btn btn-sm btn-dark mt-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
-            </a>
-        </form>
-    <?php endif; ?>
+    </div>
 
     </article>
 <?php endforeach; ?>

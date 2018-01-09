@@ -31,6 +31,7 @@
         <?php endif; ?>
 
     </ul><!-- /navbar-nav -->
+    
     <?php if (isset($_SESSION['user'])): ?>
         <span class="navbar-text text-warning">
             Logged in as: <?php echo $_SESSION['user']['username']; ?>
