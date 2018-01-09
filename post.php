@@ -23,7 +23,6 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
         <?php echo $post['link']; ?>
     </a>
     <p><?php echo $post['description']; ?></p>
-    <br>
     <small>Posted by:
         <strong>
             <?php echo $post['username']; ?>
@@ -56,7 +55,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 
        </div>
        <form action="/app/posts/deletepost.php" method="GET">
-           <button class="btn btn-sm btn-dark" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Delete post</button>
+           <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Delete post</button>
        </form>
 
     <?php endif; ?>
@@ -87,8 +86,12 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 
                     <button class="btn btn-sm btn-dark m-1" type="submit" name="button">Submit</button>
                 </form>
-
             </div>
+
+            <!-- DELETE COMMENT -->
+            <form action="/app/comments/deletecomment.php" method="GET">
+                <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $comment['comment_id']; ?>">Delete comment</button>
+            </form>
         <?php endif; ?>
     </article>
 

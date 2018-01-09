@@ -67,7 +67,7 @@ $user = GetUser($pdo);
         </div>
     </div>
     <form action="/app/auth/deleteuser.php" method="GET">
-        <button class="btn btn-sm btn-dark deletingUser" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
+        <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
     </form>
 <!-- </article> -->
 
