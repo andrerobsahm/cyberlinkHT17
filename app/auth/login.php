@@ -4,13 +4,14 @@ require __DIR__.'/../autoload.php';
 
 // Check if both username, email and password exists in the POST request.
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
-    // $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
     // $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
     // Prepare, bind email parameter and execute the database query.
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email');
+    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email AND username = :username');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 
     // Fetch the user as an associative array.
