@@ -67,12 +67,17 @@ $postInfo = GetPostInfo($pdo);
                     <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
                 </a>
             </form>
-        <?php endif; ?>
+            <small>
+                Comments:
+                <span class="badge badge-warning badge-pill">1</span>
+            </small>
 
-        <small>
-            Comments:
-            <span class="badge badge-warning badge-pill">1</span>
-        </small>
+            <form class="" action="/app/votes/addvote.php" method="post">
+                <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php ?>">Like</button>
+                <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php ?>">Dislike</button>
+            </form>
+
+        <?php endif; ?>
 
     </div>
 

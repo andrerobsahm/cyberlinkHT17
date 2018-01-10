@@ -55,3 +55,11 @@ $statement->execute();
 $postInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $postInfo;
 }
+
+
+function getVotes($pdo) {
+    $statement = $pdo->prepare("SELECT vote_id, post_id, user_id FROM votes WHERE post_id = post_id");
+    $statement->execute();
+    $votes = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $votes;
+}
