@@ -6,7 +6,7 @@
     --base-margin:16px;
 }*/
 
-h1, h2, nav { font-family: 'Audiowide', cursive;
+h1, h2, nav { font-family: 'Audiowide', monospace;
 }
 
 p, h3, h4, h5, h6, small {
