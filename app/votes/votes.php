@@ -2,6 +2,8 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
+// In this file we update votes in the database.
+
 // IF USER UPVOTE
 if (isset($_POST['up'])) {
     $id = $_SESSION["user"]["id"];

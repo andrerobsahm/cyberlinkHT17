@@ -77,7 +77,8 @@ $postInfo = GetPostInfo($pdo);
                 <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
 
                 <div class="voteScore">
-                    <p class="sum">Score: <?php echo $post['score'];?></p>
+                    <p>Score:</p>
+                    <p class="sum"><?php echo $post['score'];?></p>
                 </div>
 
         <?php endif; ?>

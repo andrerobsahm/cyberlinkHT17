@@ -5,7 +5,7 @@ const voteUp = document.querySelectorAll('.voteUp');
 const voteDown = document.querySelectorAll('.voteDown');
 const sum = document.querySelector('.sum');
 const url = "../../app/votes/votes.php";
-const sumVotes = "../../app/votes/getSumVotes.php";
+const sumVotes = "../../app/votes/sumVotes.php";
 
 // UPVOTE BUTTON
 Array.from(voteUp).forEach(up => {
@@ -36,7 +36,56 @@ Array.from(voteDown).forEach(down => {
             return response.json()
         });
     });
-});//--- END VOTING ON POSTS ---
+});
+
+
+// UPVOTE INSTANT UPDATE
+Array.from(voteUp).forEach(up => {
+    up.addEventListener('click', () => {
+        setTimeout(function () {
+            fetch(sumVotes, {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                credentials: "include",
+                body: `post_id=${up.value}`
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(voteSum => {
+                console.log(voteSum);
+                const singleSum = up.parentElement.querySelector('.sum');
+                console.log(up);
+                singleSum.textContent = `${voteSum.score}`;
+            })
+        }, 200);
+    });
+});// end UPVOTE
+
+// DOWNVOTE INSTANT UPDATE
+Array.from(voteDown).forEach(down => {
+    down.addEventListener('click', () => {
+        setTimeout(function () {
+            fetch(sumVotes, {
+                method: "POST",
+                headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                credentials: "include",
+                body: `post_id=${down.value}`
+            })
+            .then(response => {
+                return response.json()
+            })
+            .then(voteSum => {
+                console.log(voteSum);
+                const singleSum = down.parentElement.querySelector('.sum');
+                console.log(down);
+                singleSum.textContent = `${voteSum.score}`;
+            })
+        }, 200);
+    });
+}); // end DOWNVOTE
+//--- END VOTING ON POSTS ---
+
 
 
 //--- ALERT MESSAGE IF DELETING CONTENT ---
