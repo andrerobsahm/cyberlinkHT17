@@ -8,6 +8,14 @@ $user = GetUser($pdo);
 $getPost = $pdo->query("SELECT title, link, description, post_id, post_date, username FROM posts INNER JOIN users ON users.id = posts.user_id WHERE post_id = '$postId'");
 $post = $getPost->fetch(PDO::FETCH_ASSOC);
 
+// Get posts
+// $getPost = $pdo->query("SELECT posts.*, users.*, (SELECT sum(vote_direction) FROM votes
+// WHERE posts.post_id=votes.post_id) AS score FROM posts
+// JOIN votes ON posts.post_id=votes.post_id
+// JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC");
+// $post = $getPost->fetch(PDO::FETCH_ASSOC);
+
+
 // Get comments
 $getComments = $pdo->query("SELECT username, comment_id, comment, comment_date FROM users INNER JOIN comments ON users.id = comments.user_id WHERE post_id = '$postId' ");
 

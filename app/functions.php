@@ -29,13 +29,13 @@ function GetUser($pdo){
 }
 
 
-// GET POST INFO FUNCTION
-function GetPosts($pdo){
-    $statement = $pdo->prepare("SELECT * FROM posts");
-    $statement->execute();
-    $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $posts;
-}
+// // GET POST INFO FUNCTION
+// function GetPosts($pdo){
+//     $statement = $pdo->prepare("SELECT * FROM posts");
+//     $statement->execute();
+//     $posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+//         return $posts;
+// }
 
 
 // GET POST INFO FUNCTION
@@ -48,13 +48,34 @@ function GetCommentsOnPost($pdo){
 }
 
 // GET ALL POST INFO
-function GetPostInfo($pdo) {
-$statement = $pdo->prepare("SELECT username, title, link, description, post_date, post_id FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY post_id DESC");
+// function GetPostInfo($pdo) {
+// $statement = $pdo->prepare("SELECT username, title, link, description, post_date, post_id FROM users INNER JOIN posts ON users.id = posts.user_id ORDER BY post_id DESC");
+//
+// // $query2 = "SELECT posts.*, users.*, (SELECT sum(vote_direction) FROM votes
+// // WHERE posts.post_id=votes.post_id) AS score FROM posts
+// // JOIN votes ON posts.post_id=votes.post_id
+// // JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC";
+//
+//
+// $statement->execute();
+// $postInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
+//     return $postInfo;
+// }
 
-$statement->execute();
-$postInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
-    return $postInfo;
-}
+// function GetPostInfo($pdo) {
+//     $query = "SELECT posts.*, users.*, (SELECT sum(vote_direction) FROM votes
+//     WHERE posts.post_id=votes.post_id) AS score FROM posts
+//     JOIN votes ON posts.post_id=votes.post_id
+//     JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC";
+//     $statement = $pdo->prepare($query);
+//     $statement->execute();
+//     $postInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
+//     if (!$statement) {
+//       die(var_dump($pdo->errorInfo()));
+//     }
+//
+//     return $postInfo;
+// }
 
 
 function getVotes($pdo) {
@@ -62,4 +83,37 @@ function getVotes($pdo) {
     $statement->execute();
     $votes = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $votes;
+}
+
+// TO GET INFO ON LATEST CREATED POST
+function lastNewPost($pdo) {
+  $query = "SELECT post_id FROM posts ORDER BY post_id DESC LIMIT 1";
+  $statement = $pdo->prepare($query);
+  $statement->execute();
+  $resultQuery = $statement->fetch(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultQuery;
+}
+
+
+//
+function GetPostInfo($pdo) {
+
+    // $getPost = $pdo->query("SELECT title, link, description, post_id, post_date, username FROM posts INNER JOIN users ON users.id = posts.user_id WHERE post_id = '$postId'");
+    // $post = $getPost->fetch(PDO::FETCH_ASSOC);
+
+  // $query = "SELECT posts.*, users.*,  FROM posts JOIN users ON posts.user_id=users.id
+  // ORDER BY post_id DESC";
+  $statement = $pdo->prepare("SELECT posts.*, users.*, (SELECT sum(vote_direction) FROM votes
+  WHERE posts.post_id=votes.post_id) AS score FROM posts
+  JOIN votes ON posts.post_id=votes.post_id
+  JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC");
+  $statement->execute();
+  $resultQuery = $statement->fetchAll(PDO::FETCH_ASSOC);
+  if (!$statement) {
+    die(var_dump($pdo->errorInfo()));
+  }
+  return $resultQuery;
 }

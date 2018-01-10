@@ -28,4 +28,4 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
 }
 
 
-redirect('/');
+redirect('newpostvote.php');

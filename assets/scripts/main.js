@@ -10,3 +10,15 @@ document.querySelector('.deletingContent').addEventListener('click', (event) => 
             event.preventDefault();
         }
 })
+
+
+
+
+const voteUp = document.querySelectorAll('.voteUp');
+const voteDown = document.querySelectorAll('.voteDown');
+const sum = document.querySelector('.sum');
+
+const url = "../../app/votes/votes.php"
+const sumVotes = "../../app/votes/sumVotes.php"
+
+// VOTE UP BUTTON
