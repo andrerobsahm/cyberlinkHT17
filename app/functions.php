@@ -106,7 +106,7 @@ function GetPostInfo($pdo) {
 
   // $query = "SELECT posts.*, users.*,  FROM posts JOIN users ON posts.user_id=users.id
   // ORDER BY post_id DESC";
-  $statement = $pdo->prepare("SELECT posts.*, users.*, (SELECT sum(vote_direction) FROM votes
+  $statement = $pdo->prepare("SELECT posts.*, users.*, (SELECT sum(vote_dir) FROM votes
   WHERE posts.post_id=votes.post_id) AS score FROM posts
   JOIN votes ON posts.post_id=votes.post_id
   JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC");

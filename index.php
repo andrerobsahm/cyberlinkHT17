@@ -72,11 +72,11 @@ $postInfo = GetPostInfo($pdo);
                 <span class="badge badge-warning badge-pill">1</span>
             </small>
 
-                <button class="btn btn-sm btn-dark mr-1 voteUp" type="button" name="up" data-dir="1" value="<?php ?>">Like</button>
-                <button class="btn btn-sm btn-dark mr-1 voteDown" type="button" name="down" data-dir="-1" value="<?php ?>">Dislike</button>
+                <button class="voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
+                <button class="voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
 
                 <div class="voteScore">
-                    <p class="sum"><?php echo $post['score'];?></p>
+                    <p class="sum">Score: <?php echo $post['score'];?></p>
                 </div>
 
         <?php endif; ?>
