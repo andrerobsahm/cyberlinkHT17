@@ -55,8 +55,14 @@ $user = GetUser($pdo);
 
             <form action="/app/auth/updateprofile.php" method="POST">
                 <label for="textarea">Change bio text</label>
-                <textarea class="form-control" id="updateProfileText" name="bio" rows="3"></textarea>
+                <textarea class="form-control" id="updateProfileText" name="bio" rows="3"><?php echo $user['bio']; ?></textarea>
                 <button type="submit" class="btn btn-sm btn-warning mt-1">Save bio</button>
+            </form>
+
+            <form action="/app/auth/updateprofile.php" method="POST">
+                <label for="input">Change e-mail</label>
+                <input class="form-control" id="updateEmail" name="email" placeholder="<?php echo $user['email']; ?>"></input>
+                <button type="submit" class="btn btn-sm btn-warning mt-1">Save password</button>
             </form>
 
             <form action="/app/auth/updateprofile.php" method="POST">

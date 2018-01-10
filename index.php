@@ -40,7 +40,7 @@ $postInfo = GetPostInfo($pdo);
 
     <article class="border bg-light p-2 mb-3">
 
-        <a href="<?php echo $post['link']; ?>" target="_blank">
+        <a href="/post.php?id=<?php echo $post['post_id']; ?>">
             <h5><?php echo $post['title']; ?> </h5>
         </a>
 

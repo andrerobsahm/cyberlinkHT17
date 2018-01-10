@@ -59,4 +59,22 @@ if (isset($_POST['password'])) {
         }
 }
 
+
+// UPDATE EMAIL
+if (isset($_POST['email'])) {
+    $email = filter_var($_POST['email'], FILTER_VALIDATE_EMAIL);
+
+    $updateEmail = $pdo->prepare("UPDATE users SET email=:email WHERE id=:id");
+
+    $id = $_SESSION['user']['id'];
+    $updateEmail->bindParam(':id', $id, PDO::PARAM_INT);
+    $updateEmail->bindParam(':email', $email, PDO::PARAM_STR);
+    $updateEmail->execute();
+
+        if (!$updateEmail) {
+            die(var_dump($pdo->errorInfo()));
+        }
+}
+
+
 redirect('/profile.php');
