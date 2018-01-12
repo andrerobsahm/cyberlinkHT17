@@ -19,35 +19,41 @@ $postInfo = GetPostInfo($pdo);
         <h2>Welcome to</h2>
         <h1><?php echo $config['title']; ?></h1>
         <p class="lead">This is where shit happens</p>
-        <hr>
     </div>
 </header>
 
-<div class="container py-5">
+<div class="container py-4">
 
     <?php if (!isset($_SESSION['user'])): ?>
-        <article>
-        <h2>Do you have an account?</h2>
-        <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
-        </article>
+            <h2>Do you have an account?</h2>
+            <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
+            <hr>
+
     <?php endif; ?>
 
-    <?php if (isset($_SESSION['user'])): ?>
-        <h5>Post a new <a href="/newpost.php">cyberlink</a>!</h5>
-    <?php endif; ?>
-        <hr>
+    <article class="d-flex justify-content-between">
+        <h3>Shared cyberlinks</h3>
+
+        <?php if (isset($_SESSION['user'])): ?>
+            <h5>Post a new <a href="/newpost.php">cyberlink</a>!</h5>
+        <?php endif; ?>
+    </article>
 
     <!-- The feed -->
     <section>
-        <h3>Shared cyberlinks</h3>
-
-        <?php foreach ($postInfo as $post): ?>
-
+    <?php foreach ($postInfo as $post): ?>
         <article class="border bg-light p-2 mb-3">
 
+
+        <?php if (isset($_SESSION['user'])): ?>
             <a href="/post.php?id=<?php echo $post['post_id']; ?>">
                 <h5><?php echo $post['title']; ?> </h5>
             </a>
+        <?php endif; ?>
+        <?php if (!isset($_SESSION['user'])): ?>
+            <h5><?php echo $post['title']; ?> </h5>
+        <?php endif; ?>
+
 
             <?php if (isset($post['description'])): ?>
                 <p><?php echo $post['description']; ?></p>

@@ -37,5 +37,8 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
 
         $_SESSION['user'] = $user;
     }
+    else {
+        redirect('../../login.php');
+    }
 }
 redirect('/profile.php');

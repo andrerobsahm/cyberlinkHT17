@@ -12,13 +12,18 @@ $user = GetUser($pdo);
     </div>
 </header>
 
-<section class="container py-5">
+<section class="container p-4">
 
     <section class="d-flex">
         <article><!-- GREETING -->
             <h3>Hi there, <?php echo $user['name'];?> (aka <?php echo $user['username']; ?>)!</h3>
             <p>Here is you own page where you can edit you profile or, why you would want that - delete your account.</p>
             <h5>Make a new <a href="/newpost.php">cyberlink</a>!</h5>
+            <hr class="my-5" style="width:80%;">
+            <h4>Bio:</h4>
+            <p><?php echo $user['bio']; ?></p>
+
+
         </article>
 
         <article><!-- PROFILE PIC -->
@@ -30,12 +35,9 @@ $user = GetUser($pdo);
         </article>
     </section>
 
-    <hr class="my-5">
 
     <section>
         <article><!-- BIO TEXT -->
-            <h4>Bio:</h4>
-            <p><?php echo $user['bio']; ?></p>
         </article>
     </section>
 
@@ -43,7 +45,7 @@ $user = GetUser($pdo);
 
 
     <!-- TO UPDATE THE PROFILE -->
-    <article class="">
+    <article>
 
         <button class="btn btn-sm btn-dark mb-1" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update profile</button>
 

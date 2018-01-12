@@ -7,7 +7,7 @@ p, h3, h4, h5, h6, small { font-family: 'Lekton', sans-serif; }
 a { color:#794798; }
 
 .container {
-    background-color: #D3D3D3;
+    outline: 1px solid #794798;
     min-height: 88vh;
 }
 footer {
