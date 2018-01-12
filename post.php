@@ -24,6 +24,8 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!-- SHOW POST INFO -->
+<div class="container py-5">
+
 <h2><?php echo $post['title']; ?></h2>
 <section class="border bg-light p-2 mb-3">
 
@@ -117,5 +119,5 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
     </form>
 </article>
 
-
+</div> <!-- end container -->
 <?php require __DIR__.'/views/footer.php'; ?>

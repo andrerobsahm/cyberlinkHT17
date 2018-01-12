@@ -12,83 +12,89 @@ $postInfo = GetPostInfo($pdo);
 
 // Get comments
 // $comments = GetCommentsOnPost($pdo);
-
 ?>
 
-<header>
-    <h1>Welcome to <?php echo $config['title']; ?></h1>
-    <hr>
+<header class="jumbotron d-flex align-items-center justify-content-center">
+    <div class="text-center">
+        <h2>Welcome to</h2>
+        <h1><?php echo $config['title']; ?></h1>
+        <p class="lead">This is where shit happens</p>
+        <hr>
+    </div>
 </header>
 
-<?php if (!isset($_SESSION['user'])): ?>
-    <article>
-    <h2>Do you have an account?</h2>
-    <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
-    </article>
-<?php endif; ?>
+<div class="container py-5">
 
-<?php if (isset($_SESSION['user'])): ?>
-    <h5>Post a new <a href="/newpost.php">cyberlink</a>!</h5>
-<?php endif; ?>
-    <hr>
+    <?php if (!isset($_SESSION['user'])): ?>
+        <article>
+        <h2>Do you have an account?</h2>
+        <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
+        </article>
+    <?php endif; ?>
 
-<!-- The feed -->
-<section>
-    <h2>Shared cyberlinks</h2>
+    <?php if (isset($_SESSION['user'])): ?>
+        <h5>Post a new <a href="/newpost.php">cyberlink</a>!</h5>
+    <?php endif; ?>
+        <hr>
 
-    <?php foreach ($postInfo as $post): ?>
+    <!-- The feed -->
+    <section>
+        <h3>Shared cyberlinks</h3>
 
-    <article class="border bg-light p-2 mb-3">
+        <?php foreach ($postInfo as $post): ?>
 
-        <a href="/post.php?id=<?php echo $post['post_id']; ?>">
-            <h5><?php echo $post['title']; ?> </h5>
-        </a>
+        <article class="border bg-light p-2 mb-3">
 
-        <?php if (isset($post['description'])): ?>
-            <p><?php echo $post['description']; ?></p>
-        <?php endif; ?>
+            <a href="/post.php?id=<?php echo $post['post_id']; ?>">
+                <h5><?php echo $post['title']; ?> </h5>
+            </a>
 
-        <small>Posted by:
-            <strong>
-                <?php echo $post['username']; ?>
-            </strong>
-                on
-            <strong>
-                <?php echo $post['post_date']; ?>
-            </strong>
-        </small>
-        <br>
+            <?php if (isset($post['description'])): ?>
+                <p><?php echo $post['description']; ?></p>
+            <?php endif; ?>
 
-    <div class="d-flex mt-2">
-
-        <?php if (isset($_SESSION['user'])): ?>
-            <form action="/post.php" method="GET">
-                <a href="/post.php">
-                    <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
-                </a>
-            </form>
-            <small>
-                Comments:
-                <span class="badge badge-warning badge-pill">1</span>
+            <small>Posted by:
+                <strong>
+                    <?php echo $post['username']; ?>
+                </strong>
+                    on
+                <strong>
+                    <?php echo $post['post_date']; ?>
+                </strong>
             </small>
+            <br>
 
-                <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
+        <div class="d-flex mt-2">
 
-                <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
+            <?php if (isset($_SESSION['user'])): ?>
+                <form action="/post.php" method="GET">
+                    <a href="/post.php">
+                        <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
+                    </a>
+                </form>
+                <small>
+                    Comments:
+                    <span class="badge badge-warning badge-pill">1</span>
+                </small>
 
-                <div class="voteScore">
-                    <p>Score:</p>
-                    <p class="sum"><?php echo $post['score'];?></p>
-                </div>
+                    <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
 
-        <?php endif; ?>
+                    <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
 
-    </div>
+                    <div class="voteScore">
+                        <p>Score:</p>
+                        <p class="sum"><?php echo $post['score'];?></p>
+                    </div>
 
-    </article>
-<?php endforeach; ?>
+            <?php endif; ?>
 
-</section><!-- /the feed -->
+        </div>
 
+        </article>
+    <?php endforeach; ?>
+
+    </section><!-- /the feed -->
+
+</div><!-- end container -->
 
 <?php require __DIR__.'/views/footer.php'; ?>

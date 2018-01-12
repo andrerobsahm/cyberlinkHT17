@@ -1,21 +1,19 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Lekton');
 
-h1, h2, nav { font-family: 'Audiowide', monospace;
-}
+h1, h2, nav { font-family: 'Audiowide', monospace; }
 
-p, h3, h4, h5, h6, small {
-    font-family: 'Lekton', sans-serif;
-}
-a {
-    color:#FDC02F;
-}
+p, h3, h4, h5, h6, small { font-family: 'Lekton', sans-serif; }
 
-.container {}
+a { color:#794798; }
 
+.container {
+    background-color: #D3D3D3;
+    min-height: 88vh;
+}
 footer {
     color: #fff;
 }
 
-header {
+button { background-color: #794798; }
 
-}
+header { background: url(../../images/space.jpg); }
