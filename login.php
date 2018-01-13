@@ -1,5 +1,5 @@
 <?php require __DIR__.'/views/header.php'; ?>
-<section class="container py-4">
+<section class="container py-4 my-4">
     <article>
         <h1>Login</h1>
 

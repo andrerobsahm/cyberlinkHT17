@@ -1,6 +1,6 @@
 <?php require __DIR__.'/views/header.php';?>
 
-<article class="container py-4">
+<article class="container py-4 my-4">
     <h1>Make a new cyberlink</h1>
 
     <form action="app/posts/newpost.php" method="post">

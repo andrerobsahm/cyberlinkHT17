@@ -24,7 +24,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!-- SHOW POST INFO -->
-<section class="container py-4">
+<section class="container py-4 my-4">
 
     <h2><?php echo $post['title']; ?></h2>
     <section class="border bg-light p-2 mb-3">

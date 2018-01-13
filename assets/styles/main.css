@@ -8,7 +8,7 @@ a { color:#794798; }
 
 .container {
     outline: 1px solid #794798;
-    min-height: 88vh;
+    /* min-height: 88vh; */
 }
 footer {
     color: #fff;
@@ -17,3 +17,8 @@ footer {
 button { background-color: #794798; }
 
 header { background: url(../../images/space.jpg); }
+
+.active-menu-item {
+    text-decoration: overline;
+    text-decoration-color: white;
+}

@@ -22,7 +22,7 @@ $postInfo = GetPostInfo($pdo);
     </div>
 </header>
 
-<div class="container py-4">
+<div class="container py-4 my-4">
 
     <?php if (!isset($_SESSION['user'])): ?>
             <h2>Do you have an account?</h2>

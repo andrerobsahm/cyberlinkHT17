@@ -12,7 +12,7 @@ $user = GetUser($pdo);
     </div>
 </header>
 
-<section class="container p-4">
+<section class="container p-4 my-4">
 
     <section class="d-flex">
         <article><!-- GREETING -->
@@ -80,7 +80,7 @@ $user = GetUser($pdo);
         <form action="/app/auth/deleteuser.php" method="GET">
             <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
         </form>
-    <!-- < end article> -->
+    </article><!-- < end article> -->
 
 </section><!-- end container section -->
 

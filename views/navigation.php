@@ -2,7 +2,7 @@
 
     <a class="navbar-brand" href="/index.php">
         <!-- <img src="" width="30" height="30" class="d-inline-block align-top" alt="C"> -->
-        <?php echo $config['title']; ?>
+        [ <?php echo $config['title']; ?> ]
     </a>
 
     <ul class="navbar-nav">
