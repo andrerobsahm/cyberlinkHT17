@@ -11,7 +11,7 @@ require __DIR__.'/../app/autoload.php';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title><?php echo $config['title']; ?></title>
-    <link rel="icon" href="/../images/default_pic.png">
+    <link rel="icon" href="/../images/space_icon.jpg">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/5.0.0/sanitize.min.css">
 

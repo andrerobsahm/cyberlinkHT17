@@ -27,7 +27,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 <section class="container py-4 my-4">
 
     <h2><?php echo $post['title']; ?></h2>
-    <section class="border bg-light p-2 mb-3">
+    <article class="border bg-light p-2 mb-3">
 
         <a href="<?php echo $post['link']; ?>" target="_blank">
             <?php echo $post['link']; ?>
@@ -41,8 +41,10 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
             </strong>
         </small>
         <br>
+    </article>
 
-    <article class="d-flex">
+<section>
+    <article class="">
 
         <?php if(isset($_SESSION['user']) && $post['username'] === $user['username']): //ID istället? ?>
 
@@ -70,7 +72,6 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 
         <?php endif; ?>
         </article>
-    </section>
 
 
     <!-- SHOW COMMENTS -->
@@ -106,7 +107,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
         </article>
 
     <?php endforeach; ?>
-
+</section>
 
     <!-- NEW COMMENT -->
     <article class="card card-body mt-1" style="width: 30rem">

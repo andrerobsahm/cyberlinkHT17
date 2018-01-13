@@ -29,6 +29,9 @@ a { color:#794798; }
 
 
 button { background-color: #794798; }
+.btn {
+    width: fit-content;
+}
 
 .active-nav-item {
     text-decoration: overline;
