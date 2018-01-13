@@ -10,7 +10,6 @@ if (isset($_POST['up'])) {
     $post_id = (int)$_POST['up'];
     $vote_dir = (int)$_POST['dir'];
 
-
     // CHECK IF USER HAS ALREADY VOTED UP
     $voteCheckQuery = "SELECT user_id, vote_dir, post_id FROM votes
     WHERE user_id=:user_id AND post_id=:post_id";
@@ -49,7 +48,7 @@ if (isset($_POST['up'])) {
 
   // IF USER NEVER VOTE BEFORE, INSERT UPVOTE
     else if ($resultQuery === false) {
-        $query = 'INSERT INTO votes (user_id, vote_dir, post_id) VALUES (:user_id, :vote_dir, :post_id)';
+        $query = "INSERT INTO votes (user_id, vote_dir, post_id) VALUES (:user_id, :vote_dir, :post_id)";
         $statement = $pdo->prepare($query);
 
             if (!$statement) {
@@ -63,6 +62,7 @@ if (isset($_POST['up'])) {
         echo json_encode($id);
         }
 }
+
 // IF USER PRESSES DOWNVOTE
 if (isset($_POST['down'])) {
     $id = $_SESSION['user']['id'];
@@ -89,7 +89,7 @@ if (isset($_POST['down'])) {
 
         // IF USER HAS VOTED UP EARLIER, UPDATE TO DOWNVOTE
         else if (isset($resultQuery['vote_dir']) && (int)$resultQuery['vote_dir'] !== $vote_dir) {
-            $query = 'UPDATE votes SET vote_dir=:vote_dir WHERE user_id=:user_id AND post_id=:post_id';
+            $query = "UPDATE votes SET vote_dir=:vote_dir WHERE user_id=:user_id AND post_id=:post_id";
             $statement = $pdo->prepare($query);
             if (!$statement) {
             die(var_dump($pdo->errorInfo()));

@@ -1,24 +1,36 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Lekton');
 
+body {
+    background: #f8f8ff;
+    background: -webkit-linear-gradient(top,#f8f8ff,#d0d0d3);
+    background: -o-linear-gradient(top,#f8f8ff,#d0d0d3);
+    background: -moz-linear-gradient(top,#f8f8ff,#d0d0d3);
+    background: linear-gradient(to bottom, #f8f8ff, #d0d0d3);
+}
+
+header { background: url(../../images/space.jpg); }
+
+footer { color: #fff; }
+
+.container {
+    outline: 1px solid #794798;
+    background-color: #fff;
+}
+
 h1, h2, nav { font-family: 'Audiowide', monospace; }
 
 p, h3, h4, h5, h6, small { font-family: 'Lekton', sans-serif; }
 
 a { color:#794798; }
 
-.container {
-    outline: 1px solid #794798;
-    /* min-height: 88vh; */
+.cyberlink {
+    font-size: 5em;
 }
-footer {
-    color: #fff;
-}
+
 
 button { background-color: #794798; }
 
-header { background: url(../../images/space.jpg); }
-
-.active-menu-item {
+.active-nav-item {
     text-decoration: overline;
     text-decoration-color: white;
 }

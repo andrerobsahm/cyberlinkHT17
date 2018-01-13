@@ -29,7 +29,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
     <h2><?php echo $post['title']; ?></h2>
     <section class="border bg-light p-2 mb-3">
 
-        <a href="<?php echo $post['link']; ?>">
+        <a href="<?php echo $post['link']; ?>" target="_blank">
             <?php echo $post['link']; ?>
         </a>
         <p><?php echo $post['description']; ?></p>

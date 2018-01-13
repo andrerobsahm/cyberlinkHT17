@@ -1,21 +1,13 @@
     </div><!-- /container -->
 
-        <!-- <nav class="fixed-bottom navbar-light bg-dark">
-            <small>Copyright &copy;
-                <?php echo date('Y');?>
-                <?php echo $config['title'];?>
-            </small>
-            <small>Created by <a href="https://github.com/andrerobsahm">André Robsahm</a>
-            </small>
-        </nav> -->
-        <footer class="d-flex bg-dark p-2 justify-content-between">
+        <footer class="d-flex bg-dark py-2 px-4 justify-content-between">
             <small>Copyright &copy;
                 <?php echo date('Y');?>
                 <?php echo $config['title'];?>
             </small>
             <small>Created by <a href="https://github.com/andrerobsahm">André Robsahm</a></small>
         </footer>
-        
+
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>

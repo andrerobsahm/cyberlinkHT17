@@ -17,7 +17,7 @@ $postInfo = GetPostInfo($pdo);
 <header class="jumbotron d-flex align-items-center justify-content-center">
     <div class="text-center">
         <h2>Welcome to</h2>
-        <h1><?php echo $config['title']; ?></h1>
+        <h1 class="cyberlink"><?php echo $config['title']; ?></h1>
         <p class="lead">This is where shit happens</p>
     </div>
 </header>
@@ -42,7 +42,7 @@ $postInfo = GetPostInfo($pdo);
     <!-- The feed -->
     <section>
     <?php foreach ($postInfo as $post): ?>
-        <article class="border bg-light p-2 mb-3">
+        <div class="border bg-light p-2 mb-3">
 
 
         <?php if (isset($_SESSION['user'])): ?>
@@ -68,11 +68,11 @@ $postInfo = GetPostInfo($pdo);
                     <?php echo $post['post_date']; ?>
                 </strong>
             </small>
-            <br>
 
-        <div class="d-flex mt-2">
+        <article class="d-flex mt-2 justify-content-between">
 
             <?php if (isset($_SESSION['user'])): ?>
+            <div class="d-flex">
                 <form action="/post.php" method="GET">
                     <a href="/post.php">
                         <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
@@ -82,21 +82,23 @@ $postInfo = GetPostInfo($pdo);
                     Comments:
                     <span class="badge badge-warning badge-pill">1</span>
                 </small>
+            </div>
+            <br>
+            <div class="">
+                <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
 
-                    <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
+                <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
 
-                    <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
-
-                    <div class="voteScore">
-                        <p>Score:</p>
-                        <p class="sum"><?php echo $post['score'];?></p>
-                    </div>
+                <div class="voteScore">
+                    <p>Score: <span class="sum"><?php echo $post['score'];?></span></p>
+                </div>
+            </div>
 
             <?php endif; ?>
 
-        </div>
-
         </article>
+
+    </div>
     <?php endforeach; ?>
 
     </section><!-- /the feed -->
