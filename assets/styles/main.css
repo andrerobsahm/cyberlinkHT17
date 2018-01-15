@@ -40,9 +40,10 @@ a { color:#794798; }
     width: 250px;
 }
 
-button { background-color: #794798; }
+/* button { background-color: #d0d0d3; } */
 .btn {
     width: fit-content;
+    margin: 4px auto;
 }
 
 .active-nav-item {

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// In this file we make new posts in the database.
-
 // NEW POST
 if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $post_title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
@@ -13,7 +11,7 @@ if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $user_id = $_SESSION['user']['id'];
     $post_date = date("F j, Y, g:i a");
 
-    $newPost = $pdo->prepare('INSERT INTO posts (title, link, description, user_id, post_date) VALUES (:title, :link, :description, :user_id, :post_date)');
+    $newPost = $pdo->prepare("INSERT INTO posts (title, link, description, user_id, post_date) VALUES (:title, :link, :description, :user_id, :post_date)");
 
     $newPost->bindParam(':title', $post_title, PDO::PARAM_STR);
     $newPost->bindParam(':link', $post_link, PDO::PARAM_STR);

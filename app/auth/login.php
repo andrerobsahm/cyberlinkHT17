@@ -16,7 +16,6 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     }
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-
     // If user doesn't exist, redirect back to login page
     if (!$user) {
         redirect('../../login.php');

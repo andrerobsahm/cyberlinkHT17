@@ -21,8 +21,8 @@ if (isset($_POST['bio'])) {
 // UPDATE PROFILE PIC
 if (isset($_FILES['profile_pic'])) {
     $profile_pic = $_FILES['profile_pic'];
-    $info = pathinfo($_FILES['profile_pic']['name']); //Skapar array ur 'name'
-    $ext = $info['extension']; //Väljer 'extension' ur 'name'
+    $info = pathinfo($_FILES['profile_pic']['name']);
+    $ext = $info['extension'];
     $fileName = $_SESSION['user']['username'].'.'.$ext;
 
     move_uploaded_file($profile_pic['tmp_name'], __DIR__.'/profile_pic/'.$fileName);
@@ -41,8 +41,7 @@ if (isset($_FILES['profile_pic'])) {
 }
 
 // UPDATE PASSWORD
-
-//Lägg till att en måste skriva sitt gamla lösenord för att kuna ändra. Lösenordet ska också vara dolt när en skriver.
+//Lägg till att en måste skriva sitt gamla lösenord för att kunna ändra. Lösenordet ska också vara dolt när en skriver.
 if (isset($_POST['password'])) {
     $password = filter_var($_POST['password']);
     $id = $_SESSION['user']['id'];
@@ -58,7 +57,6 @@ if (isset($_POST['password'])) {
             die(var_dump($pdo->errorInfo()));
         }
 }
-
 
 // UPDATE EMAIL
 if (isset($_POST['email'])) {

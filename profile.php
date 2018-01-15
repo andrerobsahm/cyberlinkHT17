@@ -45,7 +45,7 @@ $user = GetUser($pdo);
     <!-- TO UPDATE THE PROFILE -->
     <article>
 
-        <button class="btn btn-sm btn-dark mb-1" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update profile</button>
+        <button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update profile</button>
 
         <div class="collapse" id="showForm">
             <div class="card card-body col-md-5 col-sm-12">
@@ -53,25 +53,25 @@ $user = GetUser($pdo);
                     <label for="input">Change profile picture</label>
                     <input type="file" name="profile_pic" accept=".jpg, .jpeg, .gif, .png">
                     <br>
-                    <button type="submit" class="btn btn-sm mt-1">Save picture</button>
+                    <button type="submit" class="btn btn-sm btn-warning mt-1">Save picture</button>
                 </form>
 
                 <form action="/app/auth/updateprofile.php" method="POST">
                     <label for="textarea">Change bio text</label>
                     <textarea class="form-control" id="updateProfileText" name="bio" rows="3"><?php echo $user['bio']; ?></textarea>
-                    <button type="submit" class="btn btn-sm mt-1">Save bio</button>
+                    <button type="submit" class="btn btn-sm btn-warning mt-1">Save bio</button>
                 </form>
 
                 <form action="/app/auth/updateprofile.php" method="POST">
                     <label for="input">Change e-mail</label>
                     <input class="form-control" id="updateEmail" name="email" placeholder="<?php echo $user['email']; ?>"></input>
-                    <button type="submit" class="btn btn-sm mt-1">Save password</button>
+                    <button type="submit" class="btn btn-sm btn-warning mt-1">Save password</button>
                 </form>
 
                 <form action="/app/auth/updateprofile.php" method="POST">
                     <label for="input">Change password</label>
                     <input class="form-control" id="updatePassword" name="password" type="password"></input>
-                    <button type="submit" class="btn btn-sm mt-1">Save password</button>
+                    <button type="submit" class="btn btn-sm btn-warning mt-1">Save password</button>
                 </form>
             </div>
         </div>

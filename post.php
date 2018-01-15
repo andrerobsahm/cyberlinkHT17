@@ -56,7 +56,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
         <article>
             <?php if(isset($_SESSION['user']) && $post['username'] === $user['username']): ?>
 
-                <button class="btn btn-sm btn-dark mr-1" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update post</button>
+                <button class="btn btn-sm btn-dark" type="button" data-toggle="collapse" data-target="#showForm" aria-expanded="false" aria-controls="showForm">Update post</button>
 
                 <div class="collapse" id="showForm">
                    <form action="/app/posts/editpost.php" method="POST">

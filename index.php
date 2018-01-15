@@ -33,7 +33,7 @@ $postInfo = getPostInfo($pdo);
         <h3>Shared cyberlinks</h3>
 
         <?php if (isset($_SESSION['user'])): ?>
-            <h5>Post a new <a href="/newpost.php">cyberlink</a>!</h5>
+            <h5 class="border p-2">Post a new <a href="/newpost.php">cyberlink</a>!</h5>
         <?php endif; ?>
     </article>
 
@@ -89,7 +89,7 @@ $postInfo = getPostInfo($pdo);
                     <?php endif; ?>
 
                     <div class="voteScore">
-                        <span class="badge badge-warning badge-pill"><span class="sum">Score: <?php echo $post['score'];?></span></span>
+                        <span class="badge badge-warning badge-pill">Score: <span class="sum"><?php echo $post['score'];?></span></span>
                     </div>
                 </div>
             </article>

@@ -40,6 +40,6 @@
         <h5>Log in <a href="/login.php">here</a>.</h5>
     </article>
 
-</section><!--en container-->
+</section><!--end container-->
 
 <?php require __DIR__.'/views/footer.php'; ?>

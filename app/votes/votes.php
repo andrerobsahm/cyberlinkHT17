@@ -4,13 +4,13 @@ require __DIR__.'/../autoload.php';
 
 // In this file we update votes in the database.
 
-// IF USER UPVOTE
+// IF THE USER LIKES
 if (isset($_POST['up'])) {
     $id = $_SESSION["user"]["id"];
     $post_id = (int)$_POST['up'];
     $vote_dir = (int)$_POST['dir'];
 
-    // CHECK IF USER HAS ALREADY VOTED UP
+    // CHECK IF USER HAS ALREADY LIKED
     $voteCheckQuery = "SELECT user_id, vote_dir, post_id FROM votes
     WHERE user_id=:user_id AND post_id=:post_id";
     $voteCheck = $pdo->prepare($voteCheckQuery);
@@ -25,13 +25,13 @@ if (isset($_POST['up'])) {
     $voteCheck->execute();
     $resultQuery = $voteCheck->fetch(PDO::FETCH_ASSOC);
 
-    // IF USER HAS VOTED UP ON POST, DO NOTHING
+    // IF USER HAS LIKED ON POST, DO NOTHING
     if ((int)$resultQuery['vote_dir'] === $vote_dir) {
       echo json_encode("nothing");
     }
 
 
-    // IF USER HAS VOTED DOWN EARLIER, UPDATE TO UPVOTE
+    // IF USER HAS DISLIKED EARLIER, UPDATE TO LIKES
     else if (isset($resultQuery['vote_dir']) && (int)$resultQuery['vote_dir'] !== $vote_dir) {
     $query = "UPDATE votes SET vote_dir = :vote_dir WHERE user_id=:user_id AND post_id=:post_id";
     $statement = $pdo->prepare($query);
@@ -46,7 +46,7 @@ if (isset($_POST['up'])) {
     }
 
 
-  // IF USER NEVER VOTE BEFORE, INSERT UPVOTE
+  // IF USER NEVER VOTE BEFORE, INSERT LIKES
     else if ($resultQuery === false) {
         $query = "INSERT INTO votes (user_id, vote_dir, post_id) VALUES (:user_id, :vote_dir, :post_id)";
         $statement = $pdo->prepare($query);
@@ -63,14 +63,13 @@ if (isset($_POST['up'])) {
         }
 }
 
-// IF USER PRESSES DOWNVOTE
+// IF USER PRESSES DISLIKE
 if (isset($_POST['down'])) {
     $id = $_SESSION['user']['id'];
     $post_id = (int)$_POST['down'];
     $vote_dir = (int)$_POST['dir'];
-    $voteCheckQuery = "SELECT user_id, vote_dir, post_id FROM votes
-    WHERE user_id=:user_id AND post_id=:post_id";
-    $voteCheck = $pdo->prepare($voteCheckQuery);
+    $voteCheck = $pdo->prepare("SELECT user_id, vote_dir, post_id FROM votes
+    WHERE user_id=:user_id AND post_id=:post_id");
 
         if (!$voteCheck) {
         die(var_dump($pdo->errorInfo()));
@@ -82,12 +81,12 @@ if (isset($_POST['down'])) {
     $voteCheck->execute();
     $resultQuery = $voteCheck->fetch(PDO::FETCH_ASSOC);
 
-    // IF USER HAS VOTED DOWN ON POST, DO NOTHING
+    // IF USER HAS DISLIKED ON POST, DO NOTHING
     if ((int)$resultQuery['vote_dir'] === $vote_dir) {
       echo json_encode("Already voted");
     }
 
-        // IF USER HAS VOTED UP EARLIER, UPDATE TO DOWNVOTE
+        // IF USER HAS LIKED EARLIER, UPDATE TO DISLIKE
         else if (isset($resultQuery['vote_dir']) && (int)$resultQuery['vote_dir'] !== $vote_dir) {
             $query = "UPDATE votes SET vote_dir=:vote_dir WHERE user_id=:user_id AND post_id=:post_id";
             $statement = $pdo->prepare($query);
@@ -101,7 +100,7 @@ if (isset($_POST['down'])) {
             echo json_encode($id);
         }
 
-        // IF USER NEVER VOTE BEFORE, INSERT DOWNVOTE
+        // IF USER NEVER VOTE BEFORE, INSERT DISLIKE
         else if (!$resultQuery) {
             $query = "INSERT INTO votes (user_id, vote_dir, post_id) VALUES (:user_id, :vote_dir, :post_id)";
             $statement = $pdo->prepare($query);

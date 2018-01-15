@@ -3,9 +3,7 @@ declare(strict_types=1);
 
 require __DIR__.'/../autoload.php';
 
-// In this file we add new comments in the database.
-
-// NEW POST
+// INSERT A NEW POST TO THE DATABASE
 if (isset($_POST['comment'])) {
     $add_comment = filter_var($_POST['comment'], FILTER_SANITIZE_STRING);
 
@@ -25,6 +23,5 @@ if (isset($_POST['comment'])) {
             die(var_dump($pdo->errorInfo()));
         }
 }
-
 
 redirect("/../../post.php?id=$post_id");

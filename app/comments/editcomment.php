@@ -1,9 +1,6 @@
 <?php
 declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
-
-// In this file we edit comments in the database
 
 if (isset($_POST['comment'])) {
     $comment = filter_var($_POST['comment'], FILTER_SANITIZE_STRING);
@@ -19,13 +16,11 @@ if (isset($_POST['comment'])) {
     $editComment->bindParam(':comment_id', $comment_id, PDO::PARAM_INT);
     $editComment->execute();
 
-
-
         if (!$editComment) {
             die(var_dump($pdo->errorInfo()));
         }
 
-        redirect("/../../post.php?id=$post_id");
+    redirect("/../../post.php?id=$post_id");
 }
 
 redirect('/');
