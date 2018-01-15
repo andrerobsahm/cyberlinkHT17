@@ -17,6 +17,10 @@ footer { color: #fff; }
     background-color: #fff;
 }
 
+.hej {
+    margin-top: -55px;
+}
+
 h1, h2, nav { font-family: 'Audiowide', monospace; }
 
 p, h3, h4, h5, h6, small { font-family: 'Lekton', sans-serif; }
@@ -27,6 +31,14 @@ a { color:#794798; }
     font-size: 5em;
 }
 
+.img-thumbnail {
+    width: 100%;
+    height: auto;
+}
+.img-box {
+    height: 250px;
+    width: 250px;
+}
 
 button { background-color: #794798; }
 .btn {

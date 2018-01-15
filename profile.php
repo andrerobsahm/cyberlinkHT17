@@ -14,23 +14,21 @@ $user = GetUser($pdo);
 
 <section class="container p-4 my-4">
 
-    <section class="d-flex">
-        <article><!-- GREETING -->
+    <section class="d-flex justify-content-between">
+        <article>
             <h3>Hi there, <?php echo $user['name'];?> (aka <?php echo $user['username']; ?>)!</h3>
             <p>Here is you own page where you can edit you profile or, why you would want that - delete your account.</p>
             <h5>Make a new <a href="/newpost.php">cyberlink</a>!</h5>
-            <hr class="my-5" style="width:80%;">
+            <hr class="my-5" style="width:90%;">
             <h4>Bio:</h4>
             <p><?php echo $user['bio']; ?></p>
-
-
         </article>
 
-        <article><!-- PROFILE PIC -->
+        <article class="img-box justify-items-end"><!-- PROFILE PIC -->
             <?php if (!$user['profile_pic']): ?>
-            <img src="/images/default_pic.png">
+            <img src="/images/default_pic.png" class="img-thumbnail">
             <?php else: ?>
-            <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail" style="max-height:30vw;">
+            <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail">
             <?php endif; ?>
         </article>
     </section>

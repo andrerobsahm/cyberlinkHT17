@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg sticky-top navbar-dark bg-dark d-flex justify-content-between">
 
-    <a class="navbar-brand" href="/index.php">
+    <a class="navbar-brand justify-self-left" href="/index.php">
         [ <?php echo $config['title']; ?> ]
     </a>
 

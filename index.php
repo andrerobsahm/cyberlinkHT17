@@ -7,18 +7,16 @@ if (isset($_SESSION['user'])) {
     $user = GetUser($pdo);
 }
 
-// Get posts
-$postInfo = GetPostInfo($pdo);
+// Get posts and comments
+$postInfo = getPostInfo($pdo);
 
-// Get comments
-// $comments = GetCommentsOnPost($pdo);
 ?>
 
 <header class="jumbotron d-flex align-items-center justify-content-center">
     <div class="text-center">
         <h2>Welcome to</h2>
         <h1 class="cyberlink"><?php echo $config['title']; ?></h1>
-        <p class="lead">This is where shit happens</p>
+        <p class="lead">This is where new stuff comes to light</p>
     </div>
 </header>
 
@@ -54,7 +52,6 @@ $postInfo = GetPostInfo($pdo);
             <h5><?php echo $post['title']; ?> </h5>
         <?php endif; ?>
 
-
             <?php if (isset($post['description'])): ?>
                 <p><?php echo $post['description']; ?></p>
             <?php endif; ?>
@@ -69,36 +66,34 @@ $postInfo = GetPostInfo($pdo);
                 </strong>
             </small>
 
-        <article class="d-flex mt-2 justify-content-between">
+            <article class="d-flex mt-2 justify-content-between">
 
             <?php if (isset($_SESSION['user'])): ?>
-            <div class="d-flex">
-                <form action="/post.php" method="GET">
-                    <a href="/post.php">
-                        <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
-                    </a>
-                </form>
-                <small>
-                    Comments:
-                    <span class="badge badge-warning badge-pill">1</span>
-                </small>
-            </div>
-            <br>
-            <div class="">
-                <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
-
-                <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
-
-                <div class="voteScore">
-                    <p>Score: <span class="sum"><?php echo $post['score'];?></span></p>
+                <div class="d-flex">
+                    <form action="/post.php" method="GET">
+                        <a href="/post.php">
+                            <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
+                        </a>
+                    </form>
+                    <small>
+                        Comments:
+                        <span class="badge badge-warning badge-pill">1</span>
+                    </small>
                 </div>
-            </div>
+                <br>
+                <div class="hej">
+                    <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
 
-            <?php endif; ?>
+                    <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
 
-        </article>
+                    <?php endif; ?>
 
-    </div>
+                    <div class="voteScore">
+                        <span class="badge badge-warning badge-pill"><span class="sum">Score: <?php echo $post['score'];?></span></span>
+                    </div>
+                </div>
+            </article>
+        </div>
     <?php endforeach; ?>
 
     </section><!-- /the feed -->

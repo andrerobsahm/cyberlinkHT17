@@ -2,7 +2,6 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-
 if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'])) {
 
     $name = filter_var($_POST['name'], FILTER_SANITIZE_STRING);
@@ -11,7 +10,6 @@ if (isset($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password'
     $password = filter_var($_POST['password']);
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
 
     $registerUser = $pdo->prepare("INSERT INTO users(name, username, email, password) VALUES (:name, :username, :email, :password)");
 

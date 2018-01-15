@@ -2,43 +2,34 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-// Check if both username, email and password exists in the POST request.
 if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
     $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
     $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
-    // $password = filter_var($_POST['password'], FILTER_SANITIZE_STRING);
 
-    // Prepare, bind email parameter and execute the database query.
-    $statement = $pdo->prepare('SELECT * FROM users WHERE email = :email AND username = :username');
+    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email AND username = :username");
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
 
-    // Fetch the user as an associative array.
+    if (!$statement) {
+        die(var_dump($pdo->errorInfo()));
+    }
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-    // if (!$statement) {
-    //     die(var_dump($pdo->errorInfo()));
-    // }
 
-    // If we can't find the user in the database, redirect back to the login
-    // page with our custom redirect function.
+    // If user doesn't exist, redirect back to login page
     if (!$user) {
         redirect('../../login.php');
     }
 
-    // If we found the user in the database, compare the given password from the
-    // request with the one in the database using the password_verify function.
+    //Check if password is correct
     if (password_verify($_POST['password'], $user['password'])){
-        // If the password was valid we know that the user exists and provided
-        // the correct password. We can now save the user in our session.
-        // Remember to not save the password in the session!
         unset($user['password']);
-
         $_SESSION['user'] = $user;
     }
     else {
         redirect('../../login.php');
     }
 }
+
 redirect('/profile.php');
