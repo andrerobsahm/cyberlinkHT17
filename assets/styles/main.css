@@ -17,19 +17,44 @@ footer { color: #fff; }
     background-color: #fff;
 }
 
-.hej {
+.likebox {
     margin-top: -55px;
+    text-align: center;
+}
+
+.badge {
+    font-size: 90%;
 }
 
 h1, h2, nav { font-family: 'Audiowide', monospace; }
 
 p, h3, h4, h5, h6, small { font-family: 'Lekton', sans-serif; }
 
+h5 {
+    font-weight: 600;
+}
+
 a { color:#794798; }
 
 .cyberlink {
     font-size: 5em;
 }
+
+/* mobile */
+@media (max-width: 576px){
+    .cyberlink {
+        font-size: 3em;
+    }
+}
+
+/* tablet */
+@media (max-width: 768px){
+    .user {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
 
 .img-thumbnail {
     width: 100%;
@@ -40,10 +65,9 @@ a { color:#794798; }
     width: 250px;
 }
 
-/* button { background-color: #d0d0d3; } */
 .btn {
     width: fit-content;
-    margin: 4px auto;
+    margin: 2px 0px;
 }
 
 .active-nav-item {

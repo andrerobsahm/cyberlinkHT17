@@ -5,7 +5,7 @@
                 <?php echo date('Y');?>
                 <?php echo $config['title'];?>
             </small>
-            <small>Created by <a href="https://github.com/andrerobsahm">André Robsahm</a></small>
+            <small>Created by <a href="https://github.com/andrerobsahm" target="_blank">André Robsahm</a></small>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -1,7 +1,11 @@
 <?php require __DIR__.'/views/header.php'; ?>
 <section class="container py-4 my-4">
     <article>
-        <h1>Login</h1>
+        <h1 class="mb-5">Login</h1>
+
+        <?php if(isset($_GET['error'])==true) {
+            echo '<div class="error"><h4>Oops! Something\'s not right. Try again!</h4></div>';
+        } ?>
 
         <form action="app/auth/login.php" method="post">
             <div class="form-group">

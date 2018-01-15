@@ -103,13 +103,13 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
                             <input type="hidden" name="post_id" value="<?php echo $post['post_id']; ?>">
 
                             <button class="btn btn-sm btn-dark m-1" type="submit" name="button">Submit</button>
-                        </form>
+                        </form><!-- end submit edit form -->
                     </div>
 
                     <!-- DELETE COMMENT -->
                     <form action="/app/comments/deletecomment.php" method="GET">
                         <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $comment['comment_id']; ?>">Delete comment</button>
-                    </form>
+                    </form><!-- end delete form -->
                 <?php endif; ?>
             </article>
 

@@ -75,13 +75,13 @@ $postInfo = getPostInfo($pdo);
                             <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
                         </a>
                     </form>
-                    <small>
+                    <!-- <small>
                         Comments:
                         <span class="badge badge-warning badge-pill">1</span>
-                    </small>
+                    </small> -->
                 </div>
                 <br>
-                <div class="hej">
+                <div class="likebox">
                     <button class="btn btn-sm btn-dark voteUp" type="button" name="up" data-dir="1" value="<?php echo $post['post_id'] ?>">Like</button>
 
                     <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
@@ -89,12 +89,14 @@ $postInfo = getPostInfo($pdo);
                     <?php endif; ?>
 
                     <div class="voteScore">
-                        <span class="badge badge-warning badge-pill">Score: <span class="sum"><?php echo $post['score'];?></span></span>
+                        <span class="badge badge-warning badge-pill">
+                            Score: <span class="sum"><?php echo $post['score'];?></span>
+                        </span>
                     </div>
                 </div>
             </article>
-        </div>
     <?php endforeach; ?>
+        </div>
 
     </section><!-- /the feed -->
 

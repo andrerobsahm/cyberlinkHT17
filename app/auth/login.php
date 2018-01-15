@@ -18,7 +18,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
 
     // If user doesn't exist, redirect back to login page
     if (!$user) {
-        redirect('../../login.php');
+        redirect('../../login.php?error=1');
     }
 
     //Check if password is correct
@@ -27,7 +27,7 @@ if (isset($_POST['username'], $_POST['email'], $_POST['password'])) {
         $_SESSION['user'] = $user;
     }
     else {
-        redirect('../../login.php');
+        redirect('../../login.php?error=1');
     }
 }
 
