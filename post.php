@@ -39,7 +39,7 @@ $comments = getComments($pdo, $post_id);
 
                        <textarea class="form-control" type="text" name="title"><?php echo $post['title']; ?></textarea>
 
-                       <textarea class="form-control" type="text" name="link"><?php echo $post['link']; ?></textarea>
+                       <textarea class="form-control" type="url" name="link"><?php echo $post['link']; ?></textarea>
 
                        <textarea class="form-control" type="text" name="description"><?php echo $post['description']; ?></textarea>
 

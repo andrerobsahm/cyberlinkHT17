@@ -20,10 +20,9 @@ $postInfo = getPostInfo($pdo);
 <div class="container py-4 my-4">
 
     <?php if (!isset($_SESSION['user'])): ?>
-            <h2>Do you have an account?</h2>
-            <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
-            <hr>
-
+        <h2>Do you have an account?</h2>
+        <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
+        <hr>
     <?php endif; ?>
 
     <article class="d-flex justify-content-between">
@@ -35,17 +34,17 @@ $postInfo = getPostInfo($pdo);
     </article>
 
     <!-- The feed -->
-    <section>
-    <?php foreach ($postInfo as $post): ?>
-        <div class="border bg-light p-2 mb-3">
+	<section>
+		<?php foreach ($postInfo as $post): ?>
+		<div class="border bg-light p-2 mb-3">
 
         <?php if (isset($_SESSION['user'])): ?>
             <a href="/post.php?id=<?php echo $post['post_id']; ?>">
-                <h5><?php echo $post['title']; ?> </h5>
+                <h5><?php echo $post['title']; ?></h5>
             </a>
         <?php endif; ?>
         <?php if (!isset($_SESSION['user'])): ?>
-            <h5><?php echo $post['title']; ?> </h5>
+            <h5><a href="<?php echo $post['link']; ?>" target="_blank"> <?php echo $post['title']; ?></a></h5>
         <?php endif; ?>
 
             <?php if (isset($post['description'])): ?>
@@ -77,19 +76,27 @@ $postInfo = getPostInfo($pdo);
 
                     <button class="btn btn-sm btn-dark voteDown" type="button" name="down" data-dir="-1" value="<?php echo $post['post_id'] ?>">Dislike</button>
 
-                    <?php endif; ?>
-
                     <div class="voteScore">
                         <span class="badge badge-warning badge-pill">
                             Score: <span class="sum"><?php echo $post['score'];?></span>
                         </span>
-                    </div>
+					</div>
                 </div><!-- end likebox-->
-            </article>
+			<?php endif; ?>
+			<?php if (!isset($_SESSION['user'])): ?>
+				<div class="voteScore">
+					<span class="badge badge-warning badge-pill">
+						Score: <span class="sum"><?php echo $post['score'];?></span>
+					</span>
+				</div>
+			<?php endif; ?>
+
+
+            </article><!-- end comment/like section-->
         </div>
 
-    <?php endforeach; ?>
-    </section><!-- /the feed -->
+	<?php endforeach; ?>
+	</section><!-- /the feed -->
 </div><!-- end container -->
 
 <?php require __DIR__.'/views/footer.php'; ?>

@@ -58,7 +58,7 @@ $user = GetUser($pdo);
                 <form action="/app/auth/updateprofile.php" method="POST">
                     <label for="input">Change e-mail</label>
                     <input class="form-control" id="updateEmail" name="email" placeholder="<?php echo $user['email']; ?>"></input>
-                    <button type="submit" class="btn btn-sm btn-warning mt-1">Save password</button>
+                    <button type="submit" class="btn btn-sm btn-warning mt-1">Save e-mail</button>
                 </form>
 
                 <form action="/app/auth/updateprofile.php" method="POST">
