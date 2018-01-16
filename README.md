@@ -6,23 +6,23 @@
 This is a hand-in assignment, through the web developer education at Yrgo, Gothenburg, Sweden.
 
 ### Features to be applied
-- [x] As a user I should be able to create an account.
-- [x] As a user I should be able to login.
-- [x] As a user I should be able to logout.
-- [x] As a user I should be able to edit my account email, password and biography.
-- [x] As a user I should be able to upload a profile avatar image.
-- [x] As a user I should be able to create new links with a title and description.
-- [x] As a user I should be able to edit my links.
-- [x] As a user I should be able to delete my links.
-- [x] As a user I should be able to up and down vote links.
+- As a user I should be able to create an account.
+- As a user I should be able to login.
+- As a user I should be able to logout.
+- As a user I should be able to edit my account email, password and biography.
+- As a user I should be able to upload a profile avatar image.
+- As a user I should be able to create new links with a title and description.
+- As a user I should be able to edit my links.
+- As a user I should be able to delete my links.
+- As a user I should be able to up and down vote links.
 
-### Extra features
-- [x] As a user I should be able to comment on a link.
-- [x] As a user I'm able to edit my comments.
-- [x] As a user I'm able to delete my comments.
-- [x] As a user I'm able to reply to comments.
-- [x] As a user I'm able to reset my password with email.
-- [x] As a user I'm able to delete my account along with all links and comments.
+#### Extra features
+- As a user I should be able to comment on a link.
+- As a user I'm able to edit my comments.
+- As a user I'm able to delete my comments.
+- As a user I'm able to reply to comments.
+- As a user I'm able to reset my password with email.
+- As a user I'm able to delete my account along with all links and comments.
 
 ## Instructions
 1. Clone the repository to your local drive.
