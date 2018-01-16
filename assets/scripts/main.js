@@ -89,7 +89,7 @@ Array.from(voteDown).forEach(down => {
 
 
 //--- ALERT MESSAGE IF DELETING CONTENT ---
-const deleteUser = document.querySelectorAll('.deletingUser');
+const deleteUser = document.querySelectorAll('.deleteUser');
 Array.from(deleteUser).forEach(button => {
     button.addEventListener('click', (event) => {
         if (confirm("Are you sure? This will remove your account and all your posts and comments.") == true) {

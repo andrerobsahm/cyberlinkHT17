@@ -13,7 +13,7 @@ $postInfo = getPostInfo($pdo);
     <div class="text-center">
         <h2>Welcome to</h2>
         <h1 class="cyberlink"><?php echo $config['title']; ?></h1>
-        <p class="lead">This is where new stuff comes to light</p>
+        <p class="lead">Sharing in the speed of light</p>
     </div>
 </header>
 
@@ -38,20 +38,27 @@ $postInfo = getPostInfo($pdo);
 		<?php foreach ($postInfo as $post): ?>
 		<div class="border bg-light p-2 mb-3">
 
-        <?php if (isset($_SESSION['user'])): ?>
-            <a href="/post.php?id=<?php echo $post['post_id']; ?>">
-                <h5><?php echo $post['title']; ?></h5>
-            </a>
-        <?php endif; ?>
-        <?php if (!isset($_SESSION['user'])): ?>
-            <h5><a href="<?php echo $post['link']; ?>" target="_blank"> <?php echo $post['title']; ?></a></h5>
-        <?php endif; ?>
+	        <?php if (isset($_SESSION['user'])): ?>
+	            <a href="/post.php?id=<?php echo $post['post_id']; ?>">
+	                <h5><?php echo $post['title']; ?></h5>
+	            </a>
+	        <?php endif; ?>
 
-            <?php if (isset($post['description'])): ?>
-                <p><?php echo $post['description']; ?></p>
-            <?php endif; ?>
+	        <?php if (!isset($_SESSION['user'])): ?>
+	            <h5><a href="<?php echo $post['link']; ?>" target="_blank"> <?php echo $post['title']; ?></a></h5>
+	        <?php endif; ?>
 
-            <small>Posted by:
+	        <?php if (isset($post['description'])): ?>
+	            <p><?php echo $post['description']; ?></p>
+	        <?php endif; ?>
+
+            <small>Posted by:<br>
+				<img class="profilePic rounded-circle" src="
+				<?php if(isset($post['profile_pic'])): ?>
+				<?php echo "/app/auth/profile_pic/".$post['profile_pic']; ?>
+				<?php else: echo "/images/default_pic.png";?>
+				<?php endif; ?>" alt="">
+
                 <strong>
                     <?php echo $post['username']; ?>
                 </strong>

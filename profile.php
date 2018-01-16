@@ -27,7 +27,7 @@ $user = GetUser($pdo);
             <?php if (!$user['profile_pic']): ?>
             <img src="/images/default_pic.png" class="img-thumbnail">
             <?php else: ?>
-            <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail">
+            <img src="/app/auth/profile_pic/<?php echo $user['profile_pic'] ?>" class="img-thumbnail rounded-circle">
             <?php endif; ?>
         </article>
     </section>
@@ -69,7 +69,7 @@ $user = GetUser($pdo);
             </div>
         </div>
         <form action="/app/auth/deleteuser.php" method="GET">
-            <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
+            <button class="btn btn-sm btn-dark deleteUser" type="submit" name="id" value="<?php echo $user['id']; ?>">Delete account</button>
         </form>
     </article><!-- < end article> -->
 
