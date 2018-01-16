@@ -53,11 +53,11 @@ if (isset($_POST['up'])) {
               die(var_dump($pdo->errorInfo()));
             }
 
-        $statement->bindParam(':user_id', $id, PDO::PARAM_INT);
-        $statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
-        $statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
-        $statement->execute();
-        echo json_encode($id);
+$statement->bindParam(':user_id', $id, PDO::PARAM_INT);
+$statement->bindParam(':vote_dir', $vote_dir, PDO::PARAM_INT);
+$statement->bindParam(':post_id', $post_id, PDO::PARAM_INT);
+$statement->execute();
+echo json_encode($id);
         }
 }
 
