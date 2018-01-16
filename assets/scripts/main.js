@@ -89,15 +89,42 @@ Array.from(voteDown).forEach(down => {
 
 
 //--- ALERT MESSAGE IF DELETING CONTENT ---
-const deleteContent = document.querySelectorAll('.deletingContent');
-Array.from(deleteContent).forEach(button => {
+const deleteUser = document.querySelectorAll('.deletingUser');
+Array.from(deleteUser).forEach(button => {
     button.addEventListener('click', (event) => {
-        if (confirm("Are you sure about this?") == true) {
-            // window.alert("Ok. Removing content.")
+        if (confirm("Are you sure? This will remove your account and all your posts and comments.") == true) {
+            window.alert("Ok. Removing content.")
             return true;
         }
         else {
             event.preventDefault();
         }
     });
-});//--- END ALERT MESSAGE ---
+});
+
+
+const deleteComment = document.querySelectorAll('.deleteComment');
+Array.from(deleteComment).forEach(button => {
+    button.addEventListener('click', (event) => {
+        if (confirm("Are you sure? This will remove your comment.") == true) {
+            return true;
+        }
+        else {
+            event.preventDefault();
+        }
+    });
+});
+
+
+const deletePost = document.querySelectorAll('.deletePost');
+Array.from(deletePost).forEach(button => {
+    button.addEventListener('click', (event) => {
+        if (confirm("Are you sure? This will remove your post.") == true) {
+            return true;
+        }
+        else {
+            event.preventDefault();
+        }
+    });
+});
+//--- END ALERT MESSAGE ---
