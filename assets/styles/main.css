@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Audiowide|Lekton');
 
-html {
-	background-color: #343A40;
-}
 body {
     background: #f8f8ff;
     background: -webkit-linear-gradient(top,#f8f8ff,#d0d0d3);
@@ -40,9 +37,6 @@ footer { color: #fff; }
 	margin-left: auto;
 	margin-right: auto;
 
-}
-.img-box {
-	/* background-color: #f4f4f4; */
 }
 
 .profilePic {

@@ -19,7 +19,7 @@ $postInfo = getPostInfo($pdo);
 
 <div class="container py-4 my-4">
 
-    <?php if (!isset($_SESSION['user'])): ?>
+    <?php if (!isset($user)): ?>
         <h2>Do you have an account?</h2>
         <h4>Otherwise, become a cyberlinker <a href="/register.php">here</a>.</h4>
         <hr>
@@ -28,7 +28,7 @@ $postInfo = getPostInfo($pdo);
     <article class="d-flex justify-content-between">
         <h3>Shared cyberlinks</h3>
 
-        <?php if (isset($_SESSION['user'])): ?>
+        <?php if (isset($user)): ?>
             <h5 class="border p-2">Post a new <a href="/newpost.php">cyberlink</a>!</h5>
         <?php endif; ?>
     </article>
@@ -38,13 +38,13 @@ $postInfo = getPostInfo($pdo);
 		<?php foreach ($postInfo as $post): ?>
 		<div class="border bg-light p-2 mb-3">
 
-	        <?php if (isset($_SESSION['user'])): ?>
+	        <?php if (isset($user)): ?>
 	            <a href="/post.php?id=<?php echo $post['post_id']; ?>">
 	                <h5><?php echo $post['title']; ?></h5>
 	            </a>
 	        <?php endif; ?>
 
-	        <?php if (!isset($_SESSION['user'])): ?>
+	        <?php if (!isset($user)): ?>
 	            <h5><a href="<?php echo $post['link']; ?>" target="_blank"> <?php echo $post['title']; ?></a></h5>
 	        <?php endif; ?>
 
@@ -69,7 +69,7 @@ $postInfo = getPostInfo($pdo);
             </small>
 
             <article class="d-flex mt-2 justify-content-between">
-            <?php if (isset($_SESSION['user'])): ?>
+            <?php if (isset($user)): ?>
                 <div class="d-flex">
                     <form action="/post.php" method="GET">
                         <a href="/post.php">
@@ -90,7 +90,7 @@ $postInfo = getPostInfo($pdo);
 					</div>
                 </div><!-- end likebox-->
 			<?php endif; ?>
-			<?php if (!isset($_SESSION['user'])): ?>
+			<?php if (!isset($user)): ?>
 				<div class="voteScore">
 					<span class="badge badge-warning badge-pill">
 						Score: <span class="sum"><?php echo $post['score'];?></span>

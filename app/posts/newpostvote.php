@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
+//ADD A NEW VOTE WHEN A POST IS MADE, WITH A DEFAULT VALUE OF 0.
 $latestPost = lastNewPost($pdo);
   $id = (int)$_SESSION['user']['id'];
   $post_id = $latestPost['post_id'];

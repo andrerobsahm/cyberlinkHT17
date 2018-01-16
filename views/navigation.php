@@ -42,5 +42,5 @@
                 Logged in as: <?php echo $_SESSION['user']['username']; ?>
             </span>
         <?php endif; ?>
-    </div><!-- end mobile toggler -->
+    </div><!-- end mobile menu -->
 </nav><!-- end navbar -->

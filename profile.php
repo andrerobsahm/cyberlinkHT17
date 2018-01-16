@@ -23,7 +23,7 @@ $user = GetUser($pdo);
             <p><?php echo $user['bio']; ?></p>
         </article>
 
-        <article class="col-sm-12 col-md-4 py-4 mb-2 img-box"><!-- PROFILE PIC -->
+        <article class="col-sm-12 col-md-4 py-4 mb-2"><!-- profile pic -->
             <?php if (!$user['profile_pic']): ?>
             <img src="/images/default_pic.png" class="img-thumbnail">
             <?php else: ?>
@@ -31,9 +31,6 @@ $user = GetUser($pdo);
             <?php endif; ?>
         </article>
     </section>
-
-    <!-- <hr class="my-5"> -->
-
 
     <!-- TO UPDATE THE PROFILE -->
     <article>

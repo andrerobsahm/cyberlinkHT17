@@ -1,6 +1,6 @@
 # Cyberlink
 ## A Reddit Clone
-This is a hand-in assignment, through the web developer education at Yrgo, Gothenburg, Sweden.
+This is a assignment from the web developer education at Yrgo, Gothenburg, Sweden.
 
 <img src="https://media.giphy.com/media/U3r8o52BqgXeM/giphy.gif" alt="Cyberlink" width="100%">
 
@@ -29,11 +29,11 @@ This is a hand-in assignment, through the web developer education at Yrgo, Gothe
 3. Start servers in MAMP, then open your browser of choise and enter "localhost:8888" and you will be sent to the index page.
 
 ### Written in
-- PHP, HTML, CSS, JS, SQL with some help of Bootstrap.
+- PHP, HTML, CSS, JS, SQL - with some help of Bootstrap.
 
 #### Tested by:
 1. Henrik Bielsten
 2. Christopher Mattsson
 
 ---
-_André Robsahm, Yrgo Göteborg, 2017_
+_André Robsahm, Yrgo Göteborg, 2018_

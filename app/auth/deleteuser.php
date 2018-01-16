@@ -1,6 +1,5 @@
 <?php
 declare(strict_types=1);
-
 require __DIR__.'/../autoload.php';
 
 $user_id = $_GET['id'];

@@ -102,7 +102,6 @@ Array.from(deleteUser).forEach(button => {
     });
 });
 
-
 const deleteComment = document.querySelectorAll('.deleteComment');
 Array.from(deleteComment).forEach(button => {
     button.addEventListener('click', (event) => {
@@ -115,7 +114,6 @@ Array.from(deleteComment).forEach(button => {
     });
 });
 
-
 const deletePost = document.querySelectorAll('.deletePost');
 Array.from(deletePost).forEach(button => {
     button.addEventListener('click', (event) => {
@@ -127,4 +125,4 @@ Array.from(deletePost).forEach(button => {
         }
     });
 });
-//--- END ALERT MESSAGE ---
+//--- END ALERT MESSAGES ---

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
+//UPDATE THE POST INFO IN THE DATABASE
 if (isset($_POST['title'], $_POST['link'], $_POST['description'])) {
     $post_title = filter_var($_POST['title'], FILTER_SANITIZE_STRING);
     $post_link = filter_var($_POST['link'], FILTER_SANITIZE_URL);
