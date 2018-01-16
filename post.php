@@ -1,34 +1,10 @@
 <?php
 require __DIR__.'/views/header.php';
 
-$postId = $_GET['id'];
+$post_id = $_GET['id'];
 $user = GetUser($pdo);
-
-// Get post for post page
-$getPost = $pdo->query("SELECT title, link, description, post_id, post_date, username FROM posts INNER JOIN users ON users.id = posts.user_id WHERE post_id = '$postId'");
-$post = $getPost->fetch(PDO::FETCH_ASSOC);
-
-
-
-// Get posts
-// $postInfo = getPostInfo($pdo);
-
-// Get posts
-// $getPost = $pdo->query("SELECT posts.*, users.*, (SELECT sum(vote_direction) FROM votes
-// WHERE posts.post_id=votes.post_id) AS score FROM posts
-// JOIN votes ON posts.post_id=votes.post_id
-// JOIN users ON posts.user_id=users.id GROUP BY posts.post_id ORDER BY post_id DESC");
-// $post = $getPost->fetch(PDO::FETCH_ASSOC);
-
-
-
-
-// Get comments
-$getComments = $pdo->query("SELECT username, comment_id, comment, comment_date FROM users INNER JOIN comments ON users.id = comments.user_id WHERE post_id = '$postId' ");
-
-$comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
-// $comments = GetComments($pdo);
-
+$post = getPosts($pdo, $post_id);
+$comments = getComments($pdo, $post_id);
 ?>
 
 <!-- SHOW POST INFO -->
@@ -75,7 +51,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
                </div>
 
                <form action="/app/posts/deletepost.php" method="GET">
-                   <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Delete post</button>
+                   <button class="btn btn-sm btn-dark deletePost" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Delete post</button>
                </form>
 
             <?php endif; ?>
@@ -108,7 +84,7 @@ $comments = $getComments->fetchAll(PDO::FETCH_ASSOC);
 
                     <!-- DELETE COMMENT -->
                     <form action="/app/comments/deletecomment.php" method="GET">
-                        <button class="btn btn-sm btn-dark deletingContent" type="submit" name="id" value="<?php echo $comment['comment_id']; ?>">Delete comment</button>
+                        <button class="btn btn-sm btn-dark deleteComment" type="submit" name="id" value="<?php echo $comment['comment_id']; ?>">Delete comment</button>
                     </form><!-- end delete form -->
                 <?php endif; ?>
             </article>

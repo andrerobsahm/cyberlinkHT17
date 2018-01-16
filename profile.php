@@ -4,7 +4,6 @@
 $user = GetUser($pdo);
 ?>
 
-
 <header class="jumbotron d-flex align-items-center justify-content-center">
     <div>
         <h1>My Profile</h1>

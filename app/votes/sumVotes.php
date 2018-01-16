@@ -2,7 +2,6 @@
 declare(strict_types=1);
 require __DIR__.'/../autoload.php';
 
-
 // SHOW SUM OF VOTES ON CERTAIN POST
 $post_id = (int)$_POST['post_id'];
 

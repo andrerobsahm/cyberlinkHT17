@@ -3,13 +3,10 @@ declare(strict_types=1);
 require __DIR__.'/views/header.php';
 
 if (isset($_SESSION['user'])) {
-    // Get user info
     $user = GetUser($pdo);
 }
 
-// Get posts and comments
 $postInfo = getPostInfo($pdo);
-
 ?>
 
 <header class="jumbotron d-flex align-items-center justify-content-center">
@@ -42,7 +39,6 @@ $postInfo = getPostInfo($pdo);
     <?php foreach ($postInfo as $post): ?>
         <div class="border bg-light p-2 mb-3">
 
-
         <?php if (isset($_SESSION['user'])): ?>
             <a href="/post.php?id=<?php echo $post['post_id']; ?>">
                 <h5><?php echo $post['title']; ?> </h5>
@@ -67,7 +63,6 @@ $postInfo = getPostInfo($pdo);
             </small>
 
             <article class="d-flex mt-2 justify-content-between">
-
             <?php if (isset($_SESSION['user'])): ?>
                 <div class="d-flex">
                     <form action="/post.php" method="GET">
@@ -75,10 +70,6 @@ $postInfo = getPostInfo($pdo);
                             <button class="btn btn-sm btn-dark mr-1" type="submit" name="id" value="<?php echo $post['post_id']; ?>">Comment</button>
                         </a>
                     </form>
-                    <!-- <small>
-                        Comments:
-                        <span class="badge badge-warning badge-pill">1</span>
-                    </small> -->
                 </div>
                 <br>
                 <div class="likebox">
@@ -93,13 +84,12 @@ $postInfo = getPostInfo($pdo);
                             Score: <span class="sum"><?php echo $post['score'];?></span>
                         </span>
                     </div>
-                </div>
+                </div><!-- end likebox-->
             </article>
-    <?php endforeach; ?>
         </div>
 
+    <?php endforeach; ?>
     </section><!-- /the feed -->
-
 </div><!-- end container -->
 
 <?php require __DIR__.'/views/footer.php'; ?>
