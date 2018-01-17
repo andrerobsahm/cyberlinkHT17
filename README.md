@@ -32,8 +32,8 @@ This is a assignment from the web developer education at Yrgo, Gothenburg, Swede
 - PHP, HTML, CSS, JS, SQL - with some help of Bootstrap.
 
 #### Tested by:
-1. Henrik Bielsten
-2. Christopher Mattsson
+1. <a href="https://github.com/HenrikBielsten">Henrik Bielsten</a>
+2. <a href="https://github.com/cjcmattsson">Christopher Mattsson</a>
 
 ---
 _André Robsahm, Yrgo Göteborg, 2018_
